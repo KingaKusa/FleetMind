@@ -1,0 +1,32 @@
+{% extends "Fleet/base.html" %}
+
+{% block title %} Tabela główna {% endblock %}
+
+{% block content %}
+{% if posts %}
+    <table class = "table              table-hover">
+        <tr>
+            <th><a href="?sort=id">Lp</a>
+            <th><a href="?sort=title">Tytuł przejazdu</a>
+            <th><a href="?sort=content">Destynacja</a>
+            <th><a href="?sort=create_at">Data przejazdu</a>
+            <th><a href="?sort=distance">Przejechany dystans</a>
+            <th colspan="2">Akcja
+        {% for post in posts %}
+        <tr id="post-{{ post.id }}">
+            <td>{{ post.id }}
+            <td>{{ post.title }}
+            <td>{{ post.content }}
+            <td>{{ post.create_at }}
+            <td>{{ post.distance }}
+            <td><a href="{% url 'update_post' post.id %}" class="btn btn-outline-primary">Edytuj</a>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        data-id="{{ post.id }}" data-title="{{ post.title }}">Usuń
+                </button>
+        {% endfor %}
+    </table>
+{% else %}
+    <h4> Brak danych </h4>
+{% endif %}
+{% endblock %}
