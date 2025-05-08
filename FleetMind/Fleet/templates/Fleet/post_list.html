@@ -1,32 +1,33 @@
 {% extends "Fleet/base.html" %}
-
-{% block title %} Tabela główna {% endblock %}
-
+{% block title %}Tabela z danymi{% endblock %}
 {% block content %}
-{% if posts %}
-    <table class = "table              table-hover">
+    <table class="table table-hover">
         <tr>
-            <th><a href="?sort=id">Lp</a>
-            <th><a href="?sort=title">Tytuł przejazdu</a>
-            <th><a href="?sort=content">Destynacja</a>
-            <th><a href="?sort=create_at">Data przejazdu</a>
-            <th><a href="?sort=distance">Przejechany dystans</a>
-            <th colspan="2">Akcja
+            <th>Lp.
+            <!--<th>id-->
+            <th><a href="?sort=title">Nazwa</a>
+            <th><a href="?sort=content">Treść</a>
+            <th><a href="?sort=created_at">Data</a>
+            <th>Akcja
         {% for post in posts %}
         <tr id="post-{{ post.id }}">
-            <td>{{ post.id }}
+            <td>{{ forloop.counter }}
+            <!--<td>{{ post.id }}-->
             <td>{{ post.title }}
-            <td>{{ post.content }}
-            <td>{{ post.create_at }}
-            <td>{{ post.distance }}
-            <td><a href="{% url 'update_post' post.id %}" class="btn btn-outline-primary">Edytuj</a>
-            <td>
+            <td>{{ post.content }} <br><img src="{% url 'serve_image' post.id %}" alt="{{ image.title }}" style="max-width: 100px;">
+            <td>{{ post.created_at }}
+            <td><a href="{% url 'update_post' post.id %}">Edytuj</a>
+                <!--<a href="{% url 'delete_post' post.id %}">Usuń</a>-->
                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"
                         data-id="{{ post.id }}" data-title="{{ post.title }}">Usuń
                 </button>
+        {% empty %}
+        <tr>
+            <td colspan="3">Brak danych do wyświetlenia!
         {% endfor %}
     </table>
- <a href="{% url 'create_post' %}">Dodaj post</a>
+<hr>
+<a class="btn btn-outline-primary" href="{% url 'create_post' %}">Dodaj post</a>
 
 
     <!-- Modal Bootstrap -->
@@ -64,23 +65,20 @@
         });
 
         deleteButton.addEventListener('click', function () {
-            fetch(`/posts/delete/${postIdToDelete}`, {
+            fetch(`/posts/delete/${postIdToDelete}/`, {
                 method: "DELETE",
                 headers: {
                     "X-CSRFToken": "{{ csrf_token }}",
                 },
             }).then(response => {
                 if (response.ok) {
-                    document.getElementById(`post-${postIdToDelete}`).remove();  // Usunięcie wiersza z tabeli
+                    document.getElementById(`post-${postIdToDelete}`).remove();
                     var modal = bootstrap.Modal.getInstance(deleteModal);
-                    modal.hide();  // Zamknięcie modala
+                    modal.hide();
                 }
             });
         });
     </script>
 
 
-{% else %}
-    <h4>Brak danych</h4>
-{% endif %}
 {% endblock %}
