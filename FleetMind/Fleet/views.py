@@ -34,7 +34,7 @@ def create_post(request):
         return redirect("post_list")
 
     return render(request, "Fleet/post_form.html",
-                  {"form": form, "title": "Dodaj post"})
+                  {"form": form, "title": "Dodaj przejazd"})
 
 def update_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)

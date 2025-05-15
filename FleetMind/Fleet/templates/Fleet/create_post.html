@@ -1,5 +1,5 @@
 {% extends "Fleet/base.html" %}
-{% block title %}Stwórz post{% endblock %}
+{% block title %}Dodaj przejazd{% endblock %}
 {% block content %}
 <form method="POST">
     {% csrf_token %}
@@ -7,6 +7,6 @@
     <input type="text" name="title" required><br>
     Treść posta: <br>
     <textarea name="content" rows="10" cols="50" required></textarea><br>
-    <button type="submit">Dodaj post</button>
+    <button type="submit">Wprowadź przejazd</button>
 </form>
 {% endblock %}
