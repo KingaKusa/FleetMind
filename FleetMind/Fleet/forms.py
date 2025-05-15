@@ -1,6 +1,7 @@
 from django import forms
 from .models import Post
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -17,8 +18,14 @@ class ChatForm(forms.Form):
     conversation_history = forms.CharField(required=False, widget=forms.HiddenInput())
 
 class RegisterForm(forms.ModelForm):
-    password1 = forms.CharField(widget=forms.PasswordInput, label="Hasło")
-    password2 = forms.CharField(widget=forms.PasswordInput, label="Potwierdź hasło")
+    password1 = forms.CharField(
+        widget=forms.PasswordInput, label="Hasło",
+        error_messages={"required": "Pole hasła jest wymagane!"}
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput, label="Potwierdź hasło",
+        error_messages={"required": "Potwierdzenie hasła jest wymagane!"}
+    )
 
     class Meta:
         model = User
@@ -28,5 +35,11 @@ class RegisterForm(forms.ModelForm):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 != password2:
-            raise forms.ValidationError("Hasła muszą być identyczne.")
+            raise forms.ValidationError("Hasła muszą być identyczne!")
         return password2
+
+class CustomLoginForm(AuthenticationForm):
+    error_messages = {
+        "invalid_login": "Niepoprawny login lub hasło. Spróbuj ponownie.",
+        "inactive": "Twoje konto jest nieaktywne.",
+    }

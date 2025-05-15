@@ -20,6 +20,10 @@
     <p>Nie dodano żadnych przejazdów.</p>
 {% endif %}
 
-<a href="{% url 'logout' %}">Wyloguj się</a>
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Wyloguj się</button>
+</form>
+
 {% endblock %}
 

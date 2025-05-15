@@ -2,11 +2,36 @@
 {% block title %}Logowanie{% endblock %}
 
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Zaloguj się</button>
-</form>
+<div class="container mt-4">
+    <h2 class="mb-3">Zaloguj się</h2>
 
-<p>Nie masz konta? <a href="{% url 'register' %}">Zarejestruj się</a></p>
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Nazwa użytkownika</label>
+            {{ form.username }}
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Hasło</label>
+            {{ form.password }}
+
+            {% if form.errors.password %}
+                <p class="text-danger">{{ form.errors.password }}</p>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Zaloguj się</button>
+    </form>
+
+{% if form.non_field_errors %}
+    <p class="text-danger  fw-bold">{{ form.non_field_errors }}</p>
+{% endif %}
+
+    <p class="mt-3">
+        Nie masz konta? <a href="{% url 'register' %}" class="btn btn-link">Zarejestruj się</a>
+    </p>
+
+</div>
 {% endblock %}

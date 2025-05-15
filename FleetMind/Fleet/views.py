@@ -2,12 +2,13 @@ import json
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from openai import OpenAI
-from .forms import PostForm, ChatForm, RegisterForm
+from .forms import PostForm, ChatForm, RegisterForm, CustomLoginForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from .models import Post
+
 
 def hello_users(request):
     return render (request, 'Fleet/hello_users.html')
@@ -150,7 +151,7 @@ def register(request):
     return render(request, "Fleet/Auth/register.html", {"form": form})
 
 class CustomLoginView(LoginView):
-    template_name = 'Fleet/Auth/login.html'
+    form_class = CustomLoginForm
 
 @login_required
 def user_panel(request):

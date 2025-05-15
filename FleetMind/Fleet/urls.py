@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import hello_users, hello_name, table, post_list, create_post, update_post, delete_post, chat, register, user_panel
+from .views import hello_users, hello_name, table, post_list, create_post, update_post, delete_post, chat, register, \
+    user_panel, CustomLoginView
 from django.contrib.auth.views import LogoutView, LoginView
 
 urlpatterns = [
@@ -12,7 +13,7 @@ urlpatterns = [
     path('posts/delete/<int:post_id>', delete_post, name='delete_post'),
     path('chat/', chat, name='chat'),
     path('register/', register, name='register'),
-    path('login/', LoginView.as_view(template_name='Fleet/Auth/login.html'), name='login'),
+    path('login/', CustomLoginView.as_view(template_name='Fleet/Auth/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('user-panel/', user_panel, name='user_panel'),
 ]
