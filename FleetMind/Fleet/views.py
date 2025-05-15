@@ -7,6 +7,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from .models import Post
 
 def hello_users(request):
     return render (request, 'Fleet/hello_users.html')
@@ -153,4 +154,5 @@ class CustomLoginView(LoginView):
 
 @login_required
 def user_panel(request):
-    return render(request, 'Fleet/Auth/user_panel.html', {'user': request.user})
+    user_posts = Post.objects.filter(author=request.user)  # Pobieramy posty użytkownika
+    return render(request, "Fleet/Auth/user_panel.html", {"user": request.user, "posts": user_posts})

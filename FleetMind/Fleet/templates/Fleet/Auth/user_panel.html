@@ -2,9 +2,24 @@
 {% block title %}Panel użytkownika{% endblock %}
 
 {% block content %}
-<h2>Witaj, {{ user.username }}!</h2>
+<h2>Cześć, {{ user.username }}!</h2>
 
 <p>Email: {{ user.email }}</p>
 
+<h3>Twoje przejazdy:</h3>
+{% if posts %}
+    <ul>
+        {% for post in posts %}
+            <li><strong>{{ post.title }}</strong> - {{ post.created_at }}</li>
+            <p>{{ post.content }}</p>
+            <a href="{% url 'update_post' post.id %}">Edytuj</a> |
+            <a href="{% url 'delete_post' post.id %}">Usuń</a>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Nie dodano żadnych przejazdów.</p>
+{% endif %}
+
 <a href="{% url 'logout' %}">Wyloguj się</a>
 {% endblock %}
+

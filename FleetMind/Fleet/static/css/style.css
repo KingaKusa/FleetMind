@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-content {
+    flex: 3;
+}
+
+.user-panel {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-left: 2px solid #ddd;
+    min-width: 250px;
+}
