@@ -2,8 +2,11 @@ import json
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from openai import OpenAI
-
-from .forms import PostForm, ChatForm
+from .forms import PostForm, ChatForm, RegisterForm
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 
 def hello_users(request):
     return render (request, 'Fleet/hello_users.html')
@@ -131,3 +134,23 @@ kosztów przejazdu danej trasy z uwzględnieniem ceny paliwa oraz rodzaju opon c
     return render(request, "FleetMind/chat.html",
                   {"form": form, "error_message": error_message,
                    "assistant_response": assistant_response, "response": response, "messages": messages})
+
+def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data["password1"])
+            user.save()
+            login(request, user)
+            return redirect("post_list")
+    else:
+        form = RegisterForm()
+    return render(request, "Fleet/Auth/register.html", {"form": form})
+
+class CustomLoginView(LoginView):
+    template_name = 'Fleet/Auth/login.html'
+
+@login_required
+def user_panel(request):
+    return render(request, 'Fleet/Auth/user_panel.html', {'user': request.user})

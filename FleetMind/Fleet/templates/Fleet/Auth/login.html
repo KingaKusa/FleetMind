@@ -1,0 +1,12 @@
+{% extends "Fleet/base.html" %}
+{% block title %}Logowanie{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Zaloguj się</button>
+</form>
+
+<p>Nie masz konta? <a href="{% url 'register' %}">Zarejestruj się</a></p>
+{% endblock %}

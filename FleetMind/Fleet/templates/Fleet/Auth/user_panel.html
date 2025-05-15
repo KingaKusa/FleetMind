@@ -1,0 +1,10 @@
+{% extends "Fleet/base.html" %}
+{% block title %}Panel użytkownika{% endblock %}
+
+{% block content %}
+<h2>Witaj, {{ user.username }}!</h2>
+
+<p>Email: {{ user.email }}</p>
+
+<a href="{% url 'logout' %}">Wyloguj się</a>
+{% endblock %}
