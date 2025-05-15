@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="2.2">
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="2.3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FleetMind/Fleet/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/Fleet/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FleetMind/Fleet/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/Fleet/static/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FleetMind/Fleet/templates/Fleet/Auth/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/Fleet/templates/Fleet/Auth/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FleetMind/Fleet/templates/Fleet/Auth/user_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/Fleet/templates/Fleet/Auth/user_panel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FleetMind/Fleet/templates/Fleet/Auth/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/Fleet/templates/Fleet/Auth/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FleetMind/Fleet/templates/Fleet/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/Fleet/templates/Fleet/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FleetMind/Fleet/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/Fleet/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FleetMind/Fleet/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/Fleet/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FleetMind/FleetMind/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/FleetMind/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FleetMind/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,13 +140,30 @@
       <option name="project" value="LOCAL" />
       <updated>1747335424020</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="2.3">
+      <option name="closed" value="true" />
+      <created>1747338924932</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747338924932</updated>
+    </task>
+    <task id="LOCAL-00005" summary="2.3">
+      <option name="closed" value="true" />
+      <created>1747338937391</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747338937391</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1.2" />
     <MESSAGE value="2.1" />
     <MESSAGE value="2.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="2.2" />
+    <MESSAGE value="2.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.3" />
   </component>
 </project>

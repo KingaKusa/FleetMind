@@ -18,13 +18,21 @@ class ChatForm(forms.Form):
     conversation_history = forms.CharField(required=False, widget=forms.HiddenInput())
 
 class RegisterForm(forms.ModelForm):
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+        label="Nazwa użytkownika"
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"class": "form-control"}),
+        label="E-mail"
+    )
     password1 = forms.CharField(
-        widget=forms.PasswordInput, label="Hasło",
-        error_messages={"required": "Pole hasła jest wymagane!"}
+        widget=forms.PasswordInput(attrs={"class": "form-control"}),
+        label="Hasło"
     )
     password2 = forms.CharField(
-        widget=forms.PasswordInput, label="Potwierdź hasło",
-        error_messages={"required": "Potwierdzenie hasła jest wymagane!"}
+        widget=forms.PasswordInput(attrs={"class": "form-control"}),
+        label="Potwierdź hasło"
     )
 
     class Meta:
