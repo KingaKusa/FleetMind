@@ -1,1 +1,1 @@
-web: gunicorn FleetMind.wsgi --bind 0.0.0.0:8000
+web: gunicorn FleetMind.FleetMind.FleetMind.wsgi --bind 0.0.0.0:8000
