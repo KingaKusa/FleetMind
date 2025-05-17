@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="4.0">
-      <change beforePath="$PROJECT_DIR$/.idea/FleetMind.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FleetMind.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="4.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fleet/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FleetMind/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,7 +224,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747510071632</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="4.1">
+      <option name="closed" value="true" />
+      <created>1747510704269</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747510704269</updated>
+    </task>
+    <task id="LOCAL-00016" summary="4.1">
+      <option name="closed" value="true" />
+      <created>1747510712675</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1747510712675</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -240,6 +257,7 @@
     <MESSAGE value="3.7" />
     <MESSAGE value="3.8" />
     <MESSAGE value="4.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.0" />
+    <MESSAGE value="4.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.1" />
   </component>
 </project>

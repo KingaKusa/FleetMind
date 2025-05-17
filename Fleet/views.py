@@ -36,14 +36,16 @@ def post_list(request):
     posts = Post.objects.all().order_by(sort)
     return render(request, 'Fleet/table.html', {'posts': posts})
 
+@login_required
 def create_post(request):
     form = PostForm(request.POST or None)
     if request.method == "POST" and form.is_valid():
-        form.save()
+        post = form.save(commit=False)
+        post.author = request.user
+        post.save()
         return redirect("post_list")
+    return render(request, "Fleet/post_form.html", {"form": form, "title": "Dodaj przejazd"})
 
-    return render(request, "Fleet/post_form.html",
-                  {"form": form, "title": "Dodaj przejazd"})
 
 def update_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
