@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="3.4">
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="3.7">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +179,31 @@
       <option name="project" value="LOCAL" />
       <updated>1747483185206</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="3.5">
+      <option name="closed" value="true" />
+      <created>1747483370295</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747483370295</updated>
+    </task>
+    <task id="LOCAL-00011" summary="3.6">
+      <option name="closed" value="true" />
+      <created>1747483485440</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1747483485440</updated>
+    </task>
+    <task id="LOCAL-00012" summary="3.7">
+      <option name="closed" value="true" />
+      <created>1747483872013</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1747483872013</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -190,6 +215,9 @@
     <MESSAGE value="3.2" />
     <MESSAGE value="3.3" />
     <MESSAGE value="3.4" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.4" />
+    <MESSAGE value="3.5" />
+    <MESSAGE value="3.6" />
+    <MESSAGE value="3.7" />
+    <option name="LAST_COMMIT_MESSAGE" value="3.7" />
   </component>
 </project>
