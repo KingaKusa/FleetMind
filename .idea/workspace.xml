@@ -4,9 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="3.7">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="3.8">
+      <change afterPath="$PROJECT_DIR$/Fleet/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/migrations/0002_alter_post_title.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/migrations/0003_rename_create_ta_post_create_at.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/migrations/0004_post_author.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/static/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/Auth/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/Auth/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/Auth/user_panel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/chat.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/create_post.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/delete_post.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/hello_name.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/hello_users.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/image_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/image_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/post_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/post_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/table.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/update_post.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fleet/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +57,12 @@
     &quot;assignee&quot;: &quot;KingaKusa&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KingaKusa/FleetMind.git",
-    "accountId": "710d90f1-b2ea-4cc0-8bf4-876e63d6518e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KingaKusa/FleetMind.git&quot;,
+    &quot;accountId&quot;: &quot;710d90f1-b2ea-4cc0-8bf4-876e63d6518e&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -54,12 +81,14 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kinga/PycharmProjects/FleetMind/FleetMind/Fleet/templates/Fleet&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vdi-student/PycharmProjects/FleetMind&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vdi-student\PycharmProjects\FleetMind" />
       <recent name="C:\Users\kinga\PycharmProjects\FleetMind\FleetMind\Fleet\templates\Fleet" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -203,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747483872013</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="3.8">
+      <option name="closed" value="true" />
+      <created>1747484276272</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1747484276272</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -218,6 +255,7 @@
     <MESSAGE value="3.5" />
     <MESSAGE value="3.6" />
     <MESSAGE value="3.7" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.7" />
+    <MESSAGE value="3.8" />
+    <option name="LAST_COMMIT_MESSAGE" value="3.8" />
   </component>
 </project>

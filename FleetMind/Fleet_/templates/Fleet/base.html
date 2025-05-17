@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pl">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <title>{% block title %}FleetMindApp{% endblock %}</title>
+  </head>
+  <body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">FleetMind</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'table' %}">Rejestr przejazdów</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Administracja przejazdów
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="{% url 'post_list' %}">Lista przejazdów</a></li>
+            <li><a class="dropdown-item" href="{% url 'create_post' %}">Dodaj przejazd</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container d-flex">
+    <div class="main-content flex-grow-1">
+        {% block content %}FleetMindAppContent{% endblock %}
+    </div>
+    <div class="user-panel ms-3 p-3 bg-light border rounded">
+        {% if user.is_authenticated %}
+            <h3>Panel użytkownika</h3>
+            <p>Witaj, {{ user.username }}!</p>
+            <ul class="list-unstyled">
+                <li><a href="{% url 'user_panel' %}" class="btn btn-primary">Twój profil</a></li>
+                <li><a href="{% url 'post_list' %}" class="btn btn-secondary">Twoje przejazdy</a></li>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Wyloguj się</button>
+                </form>
+
+            </ul>
+        {% else %}
+            <p><a href="{% url 'login' %}" class="btn btn-success">Zaloguj się</a></p>
+        {% endif %}
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
+

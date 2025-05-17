@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-content {
+    flex: 3;
+}
+
+.user-panel {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-left: 2px solid #ddd;
+    min-width: 250px;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+ul.errorlist {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color: red !important;
+    font-weight: bold;
+}
+
+.card {
+    padding: 30px;
+    max-width: 600px;
+}
+
+.input-group-text {
+    background: transparent !important;
+    border: none;
+}
+
