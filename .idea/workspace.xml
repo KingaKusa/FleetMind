@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="3.8">
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="4.0">
       <change beforePath="$PROJECT_DIR$/.idea/FleetMind.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FleetMind.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/Auth/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/Auth/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/chat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FleetMind/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user1-fleet_accessKeys.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +34,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/KingaKusa/FleetMind.git&quot;,
-    &quot;accountId&quot;: &quot;710d90f1-b2ea-4cc0-8bf4-876e63d6518e&quot;
+    &quot;accountId&quot;: &quot;cae134e1-80ba-4019-b34b-b005918ed123&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -56,18 +48,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.manage.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/kinga/PycharmProjects/FleetMind",
-    "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.manage.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kinga/PycharmProjects/FleetMind&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\vdi-student\PycharmProjects\FleetMind" />
@@ -223,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747484276272</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="4.0">
+      <option name="closed" value="true" />
+      <created>1747510071632</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1747510071632</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -239,6 +239,7 @@
     <MESSAGE value="3.6" />
     <MESSAGE value="3.7" />
     <MESSAGE value="3.8" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.8" />
+    <MESSAGE value="4.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.0" />
   </component>
 </project>
