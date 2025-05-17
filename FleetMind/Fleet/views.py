@@ -1,3 +1,4 @@
+import os
 import json
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -8,6 +9,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from .models import Post
+
+ENV = os.environ.get('ENV', 'dev')
 
 
 def hello_users(request):
