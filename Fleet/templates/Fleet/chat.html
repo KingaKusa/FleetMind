@@ -1,33 +1,33 @@
-{% extends "Fleet/base.html" %}
+<!--{% extends "Fleet/base.html" %}-->
 
-{% block title %}Chat{% endblock %}
+<!--{% block title %}Chat{% endblock %}-->
 
-{% block content %}
-<h1>ChatGPT</h1>
+<!--{% block content %}-->
+<!--<h1>ChatGPT</h1>-->
 
-{% if error_message %}
-<div class="alert alert-danger">
-{{ error_message }}
-</div>
-{% endif %}
+<!--{% if error_message %}-->
+<!--<div class="alert alert-danger">-->
+<!--{{ error_message }}-->
+<!--</div>-->
+<!--{% endif %}-->
 
-{% if messages %}
-    <h3>Historia rozmowy:</h3>
-    {% for message in messages %}
-        {% if forloop.counter0 > 0 %}
-            <div class="alert alert-{% if message.role == 'user' %}primary{% else %}danger{% endif %}">
-            {% if message.role == 'user' %}Ty:{% else %}ChatGPT:{% endif %}
-                    {{ message.content }}
-            </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
+<!--{% if messages %}-->
+<!--    <h3>Historia rozmowy:</h3>-->
+<!--    {% for message in messages %}-->
+<!--        {% if forloop.counter0 > 0 %}-->
+<!--            <div class="alert alert-{% if message.role == 'user' %}primary{% else %}danger{% endif %}">-->
+<!--            {% if message.role == 'user' %}Ty:{% else %}ChatGPT:{% endif %}-->
+<!--                    {{ message.content }}-->
+<!--            </div>-->
+<!--        {% endif %}-->
+<!--    {% endfor %}-->
+<!--{% endif %}-->
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.conversation_history }}
-    {{ form.prompt }}
-    <button type="submit">Wyślij</button>
-</form>
+<!--<form method="POST">-->
+<!--    {% csrf_token %}-->
+<!--    {{ form.conversation_history }}-->
+<!--    {{ form.prompt }}-->
+<!--    <button type="submit">Wyślij</button>-->
+<!--</form>-->
 
-{% endblock %}
+<!--{% endblock %}-->

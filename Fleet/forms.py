@@ -13,10 +13,6 @@ class PostForm(forms.ModelForm):
             "content": forms.Textarea(attrs={"class": "form-control", "placeholder": "Podaj treść posta", "rows": 5}),
         }
 
-class ChatForm(forms.Form):
-    prompt = forms.CharField(label="Prompt")
-    conversation_history = forms.CharField(required=False, widget=forms.HiddenInput())
-
 class RegisterForm(forms.ModelForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={"class": "form-control"}),
@@ -39,6 +35,18 @@ class RegisterForm(forms.ModelForm):
         model = User
         fields = ["username", "email", "password1", "password2"]
 
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError("Nazwa użytkownika już istnieje. Wybierz inną.")
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Użytkownik z tym adresem e-mail już istnieje.")
+        return email
+
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
@@ -51,3 +59,8 @@ class CustomLoginForm(AuthenticationForm):
         "invalid_login": "Niepoprawny login lub hasło. Spróbuj ponownie.",
         "inactive": "Twoje konto jest nieaktywne.",
     }
+
+
+# class ChatForm(forms.Form):
+#     prompt = forms.CharField(label="Prompt")
+#     conversation_history = forms.CharField(required=False, widget=forms.HiddenInput())
