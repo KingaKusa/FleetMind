@@ -15,7 +15,6 @@
             <td>{{ forloop.counter }}</td>
             <td>{{ post.title }}</td>
             <td>{{ post.content }} <br>
-                <img src="{% url 'serve_image' post.id %}" alt="{{ post.title }}" style="max-width: 100px;">
             </td>
             <td>{{ post.created_at }}</td>
             <td>
