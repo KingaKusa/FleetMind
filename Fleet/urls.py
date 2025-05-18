@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import hello_users, hello_name, table, post_list, create_post, update_post, delete_post, register, \
-    user_panel, CustomLoginView, user_posts
+    user_panel, CustomLoginView, user_posts, serve_image
 # from .views import chat
 from django.contrib.auth.views import LogoutView, LoginView
 
@@ -18,4 +18,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('user-panel/', user_panel, name='user_panel'),
     path('user_posts/', user_posts, name='user_posts'),
+path('posts/image/<int:post_id>/', serve_image, name='serve_image')
 ]
