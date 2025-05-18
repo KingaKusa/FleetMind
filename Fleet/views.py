@@ -135,12 +135,6 @@ def user_posts(request):
     posts = Post.objects.filter(author=request.user).order_by(sort)
     return render(request, "Fleet/user_posts.html", {"posts": posts})
 
-def serve_image(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    if post.image:
-        with open(post.image.path, "rb") as image_file:
-            return HttpResponse(image_file.read(), content_type="image/jpeg")
-    return HttpResponse("Brak obrazu", status=404)
 
 
 # def get_api_key():

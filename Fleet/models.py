@@ -11,7 +11,6 @@ class Post(models.Model):
     end_location = models.CharField(max_length=255, blank=True, null=True)
     travel_time = models.DurationField(blank=True, null=True)
     vehicle = models.CharField(max_length=100, blank=True, null=True)
-    image = models.ImageField(upload_to="post_images/", blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -23,3 +22,4 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
