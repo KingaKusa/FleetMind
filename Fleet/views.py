@@ -129,6 +129,11 @@ def user_panel(request):
     user_posts = Post.objects.filter(author=request.user)  # Pobieramy posty użytkownika
     return render(request, "Fleet/Auth/user_panel.html", {"user": request.user, "posts": user_posts})
 
+@login_required
+def user_posts(request):
+    user_posts = Post.objects.filter(author=request.user)
+    return render(request, "Fleet/user_posts.html", {"posts": user_posts})
+
 
 # def get_api_key():
 #     """Pobiera klucz API z pliku openai_key.txt"""

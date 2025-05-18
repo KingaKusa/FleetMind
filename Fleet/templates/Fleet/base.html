@@ -46,7 +46,7 @@
             <p>Witaj, {{ user.username }}!</p>
             <ul class="list-unstyled">
                 <li><a href="{% url 'user_panel' %}" class="btn btn-primary">Twój profil</a></li>
-                <li><a href="{% url 'post_list' %}" class="btn btn-secondary">Twoje przejazdy</a></li>
+                <li><a class="dropdown-item" href="{% url 'user_posts' %}">Twoje przejazdy</a></li>
                 <form method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger">Wyloguj się</button>
