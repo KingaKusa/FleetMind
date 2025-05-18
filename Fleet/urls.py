@@ -5,7 +5,7 @@ from .views import hello_users, hello_name, table, post_list, create_post, updat
 from django.contrib.auth.views import LogoutView, LoginView
 
 urlpatterns = [
-    path('hello/', hello_users),
+    path('hello/', hello_users, name='hello_users'),
     path('hello/<str:name>/', hello_name),
     path('table/', table, name='table'),
     path('posts/', post_list, name='post_list'),
