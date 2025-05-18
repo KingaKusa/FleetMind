@@ -81,9 +81,11 @@ def table(request):
     return render(request, 'Fleet/table.html', {'posts': posts})
 
 from .models import Post
+
+@login_required
 def post_list(request):
     sort = request.GET.get('sort', 'id')
-    posts = Post.objects.all().order_by(sort)
+    posts = Post.objects.filter(author=request.user).order_by(sort)
     return render(request, 'Fleet/table.html', {'posts': posts})
 
 @login_required
@@ -114,6 +116,27 @@ def delete_post(request, post_id):
         post.delete()
         return JsonResponse({"message": "Post usunięty"}, status=204)
     return JsonResponse({"error": "Metoda niedozwolona"}, status=405)
+
+def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data["password1"])
+            user.save()
+            login(request, user)
+            return redirect("post_list")
+    else:
+        form = RegisterForm()
+    return render(request, "Fleet/Auth/register.html", {"form": form})
+
+class CustomLoginView(LoginView):
+    form_class = CustomLoginForm
+
+@login_required
+def user_panel(request):
+    user_posts = Post.objects.filter(author=request.user)  # Pobieramy posty użytkownika
+    return render(request, "Fleet/Auth/user_panel.html", {"user": request.user, "posts": user_posts})
 
 
 # def get_api_key():
@@ -192,24 +215,3 @@ def delete_post(request, post_id):
 #     return render(request, "FleetMind/chat.html",
 #                   {"form": form, "error_message": error_message,
 #                    "assistant_response": assistant_response, "response": response, "messages": messages})
-
-def register(request):
-    if request.method == "POST":
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data["password1"])
-            user.save()
-            login(request, user)
-            return redirect("post_list")
-    else:
-        form = RegisterForm()
-    return render(request, "Fleet/Auth/register.html", {"form": form})
-
-class CustomLoginView(LoginView):
-    form_class = CustomLoginForm
-
-@login_required
-def user_panel(request):
-    user_posts = Post.objects.filter(author=request.user)  # Pobieramy posty użytkownika
-    return render(request, "Fleet/Auth/user_panel.html", {"user": request.user, "posts": user_posts})
