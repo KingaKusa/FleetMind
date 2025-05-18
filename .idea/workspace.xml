@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="6.3">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="7.1">
+      <change afterPath="$PROJECT_DIR$/Fleet/migrations/0006_post_distance_post_end_location_post_image_and_more.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,11 +333,18 @@
       <option name="project" value="LOCAL" />
       <updated>1747570359027</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="7.1">
+      <option name="closed" value="true" />
+      <created>1747570871783</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1747570871783</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1.2" />
     <MESSAGE value="2.1" />
     <MESSAGE value="2.2" />
     <MESSAGE value="2.3" />
@@ -364,6 +369,7 @@
     <MESSAGE value="6.1" />
     <MESSAGE value="6.2" />
     <MESSAGE value="6.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="6.3" />
+    <MESSAGE value="7.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="7.1" />
   </component>
 </project>
