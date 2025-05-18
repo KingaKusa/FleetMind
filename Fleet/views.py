@@ -76,7 +76,7 @@ def table(request):
 @login_required
 def post_list(request):
     sort = request.GET.get('sort', 'id')
-    posts = Post.objects.filter(author=request.user).order_by(sort)
+    posts = Post.objects.all().order_by(sort)
     return render(request, 'Fleet/table.html', {'posts': posts})
 
 @login_required
@@ -131,8 +131,9 @@ def user_panel(request):
 
 @login_required
 def user_posts(request):
-    user_posts = Post.objects.filter(author=request.user)
-    return render(request, "Fleet/user_posts.html", {"posts": user_posts})
+    sort = request.GET.get('sort', 'id')
+    posts = Post.objects.filter(author=request.user).order_by(sort)
+    return render(request, "Fleet/user_posts.html", {"posts": posts})
 
 def serve_image(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -140,6 +141,8 @@ def serve_image(request, post_id):
         with open(post.image.path, "rb") as image_file:
             return HttpResponse(image_file.read(), content_type="image/jpeg")
     return HttpResponse("Brak obrazu", status=404)
+
+
 # def get_api_key():
 #     """Pobiera klucz API z pliku openai_key.txt"""
 #     try:

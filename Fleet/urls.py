@@ -18,5 +18,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('user-panel/', user_panel, name='user_panel'),
     path('user_posts/', user_posts, name='user_posts'),
-path('posts/image/<int:post_id>/', serve_image, name='serve_image')
+    path('posts/image/<int:post_id>/', serve_image, name='serve_image')
 ]
