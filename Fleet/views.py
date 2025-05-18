@@ -2,15 +2,15 @@ import os
 import json
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-# from openai import OpenAI
 from .forms import PostForm, RegisterForm, CustomLoginForm
-# from .forms import ChatForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .models import Post
+# from .forms import ChatForm
+# from openai import OpenAI
 
 from Fleet.models import Task
 
@@ -18,7 +18,6 @@ ENV = os.environ.get('ENV', 'dev')
 
 @csrf_exempt
 def hello_users(request):
-    # return render (request, 'Fleet/hello_users.html')
     try:
         tasks = Task.objects.all()
         task_list = "<br>".join([f"{task.id}. {task.title}" for task in tasks])
@@ -71,16 +70,8 @@ def hello_name(request, name):
     return render (request, 'Fleet/hello_name.html', {'name': name})
 
 def table(request):
-    posts = [
-        # {"id": 1, "title": "Praca", "content": "Dom - Żmigrodzka - Dom", "create_at": "2025-04-01", "distance": "24"},
-        # {"id": 2, "title": "Siłownia", "content": "Dom - Fitstrefa - Dom", "create_at": "2025-04-01", "distance": "7"},
-        # {"id": 3, "title": "Praca", "content": "Dom - Żmigrodzka - Dom", "create_at": "2025-04-02", "distance": "24"},
-        # {"id": 4, "title": "Praca, zakupy", "content": "Dom - Żmigrodzka - Lidl - Dom", "create_at": "2025-04-03", "distance": "27"},
-    ]
-
+    posts = []
     return render(request, 'Fleet/table.html', {'posts': posts})
-
-from .models import Post
 
 @login_required
 def post_list(request):
