@@ -9,13 +9,63 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from .models import Post
+
+from Fleet.models import Task
 
 ENV = os.environ.get('ENV', 'dev')
 
-
+@csrf_exempt
 def hello_users(request):
-    return render (request, 'Fleet/hello_users.html')
+    # return render (request, 'Fleet/hello_users.html')
+    try:
+        tasks = Task.objects.all()
+        task_list = "<br>".join([f"{task.id}. {task.title}" for task in tasks])
+        db_status = "Połączenie z bazą danych działa poprawnie!"
+    except Exception as e:
+        task_list = ""
+        db_status = f"Błąd bazy danych: {str(e)}"
+
+    if request.method == 'POST':
+        try:
+            title = request.POST.get('title', '')
+            description = request.POST.get('description', '')
+            if title:
+                Task.objects.create(title=title, description=description)
+                return redirect('hello_users')
+        except Exception as e:
+            db_status += f"<br>Błąd podczas dodawania zadania: {str(e)}"
+
+    form_html = """
+        <form method="post">
+          <div>
+            <label for="title">Tytuł zadania:</label>
+            <input type="text" id="title" name="title" required>
+          </div>
+          <div>
+            <label for="description">Opis:</label>
+            <textarea id="description" name="description"></textarea>
+          </div>
+          <button type="submit">Dodaj zadanie</button>
+        </form>
+        """
+
+    return HttpResponse(f"""
+        <h1>Hello, World!</h1>
+        <p>Środowisko: {ENV}</p>
+        <p>Status bazy danych: {db_status}</p>
+        <h2>Dodaj nowe zadanie:</h2>
+        {form_html}
+        <h2>Lista zadań:</h2>
+        <p>{task_list if task_list else "Brak zadań"}</p>
+        """)
+
+
+
+
+
+
 
 def hello_name(request, name):
     return render (request, 'Fleet/hello_name.html', {'name': name})
