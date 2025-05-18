@@ -72,10 +72,10 @@ def hello_name(request, name):
 
 def table(request):
     posts = [
-        {"id": 1, "title": "Praca", "content": "Dom - Żmigrodzka - Dom", "create_at": "2025-04-01", "distance": "24"},
-        {"id": 2, "title": "Siłownia", "content": "Dom - Fitstrefa - Dom", "create_at": "2025-04-01", "distance": "7"},
-        {"id": 3, "title": "Praca", "content": "Dom - Żmigrodzka - Dom", "create_at": "2025-04-02", "distance": "24"},
-        {"id": 4, "title": "Praca, zakupy", "content": "Dom - Żmigrodzka - Lidl - Dom", "create_at": "2025-04-03", "distance": "27"},
+        # {"id": 1, "title": "Praca", "content": "Dom - Żmigrodzka - Dom", "create_at": "2025-04-01", "distance": "24"},
+        # {"id": 2, "title": "Siłownia", "content": "Dom - Fitstrefa - Dom", "create_at": "2025-04-01", "distance": "7"},
+        # {"id": 3, "title": "Praca", "content": "Dom - Żmigrodzka - Dom", "create_at": "2025-04-02", "distance": "24"},
+        # {"id": 4, "title": "Praca, zakupy", "content": "Dom - Żmigrodzka - Lidl - Dom", "create_at": "2025-04-03", "distance": "27"},
     ]
 
     return render(request, 'Fleet/table.html', {'posts': posts})
