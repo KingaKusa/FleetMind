@@ -162,6 +162,23 @@ def user_posts(request):
         "current_direction": request.GET.get('direction', 'asc')
     })
 
+
+@login_required
+def post_detail_json(request, post_id):
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+    data = {
+        "title": post.title,
+        "content": post.content,
+        "create_at": post.create_at.strftime("%Y-%m-%d %H:%M"),
+        "distance": post.distance,
+        "start_location": post.start_location,
+        "end_location": post.end_location,
+        "travel_time": str(post.travel_time) if post.travel_time else None,
+        "vehicle": post.vehicle,
+    }
+    return JsonResponse(data)
+
+
 # def get_api_key():
 #     """Pobiera klucz API z pliku openai_key.txt"""
 #     try:

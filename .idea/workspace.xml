@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="9.5">
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="9.6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/post_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fleet/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fleet/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -425,7 +426,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747681606226</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="9.6">
+      <option name="closed" value="true" />
+      <created>1747682556935</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1747682556935</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -440,7 +449,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="3.5" />
     <MESSAGE value="3.6" />
     <MESSAGE value="3.7" />
     <MESSAGE value="3.8" />
@@ -465,6 +473,7 @@
     <MESSAGE value="9.3" />
     <MESSAGE value="9.4" />
     <MESSAGE value="9.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="9.5" />
+    <MESSAGE value="9.6" />
+    <option name="LAST_COMMIT_MESSAGE" value="9.6" />
   </component>
 </project>

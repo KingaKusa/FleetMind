@@ -62,6 +62,18 @@
                 <a class="btn btn-sm btn-warning" href="{% url 'update_post' post.id %}">Edytuj</a>
                 <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
                         data-id="{{ post.id }}" data-title="{{ post.title }}">Usuń</button>
+                <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailModal"
+                        data-title="{{ post.title }}"
+                        data-content="{{ post.content }}"
+                        data-create_at="{{ post.create_at }}"
+                        data-author="{{ post.author.username }}"
+                        data-distance="{{ post.distance }}"
+                        data-start_location="{{ post.start_location }}"
+                        data-end_location="{{ post.end_location }}"
+                        data-travel_time="{{ post.travel_time }}"
+                        data-vehicle="{{ post.vehicle }}">
+                  Szczegóły
+                </button>
             </td>
         </tr>
         {% empty %}
@@ -70,6 +82,33 @@
         </tr>
         {% endfor %}
     </tbody>
+
+    <!-- Modal do wyświetlania szczegółów posta -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailModalLabel">Szczegóły przejazdu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Tytuł:</strong> <span id="detail-title"></span></p>
+            <p><strong>Treść:</strong> <span id="detail-content"></span></p>
+            <p><strong>Data utworzenia:</strong> <span id="detail-create_at"></span></p>
+            <p><strong>Autor:</strong> <span id="detail-author"></span></p>
+            <p><strong>Distance:</strong> <span id="detail-distance"></span></p>
+            <p><strong>Start location:</strong> <span id="detail-start_location"></span></p>
+            <p><strong>End location:</strong> <span id="detail-end_location"></span></p>
+            <p><strong>Travel time:</strong> <span id="detail-travel_time"></span></p>
+            <p><strong>Vehicle:</strong> <span id="detail-vehicle"></span></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </table>
 
 <hr>
@@ -97,6 +136,7 @@
 <script>
     const csrftoken = '{{ csrf_token }}';
 
+    // Obsługa modala do potwierdzenia usunięcia
     var deleteModal = document.getElementById('deleteModal');
     var deleteButton = document.getElementById('confirmDelete');
     var postIdToDelete = null;
@@ -126,6 +166,22 @@
                 alert("Coś poszło nie tak przy usuwaniu");
             }
         });
+    });
+
+    // Obsługa otwarcia modala ze szczegółami
+    var detailModal = document.getElementById('detailModal');
+    detailModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+
+        document.getElementById('detail-title').textContent = button.getAttribute('data-title');
+        document.getElementById('detail-content').textContent = button.getAttribute('data-content');
+        document.getElementById('detail-create_at').textContent = button.getAttribute('data-create_at');
+        document.getElementById('detail-author').textContent = button.getAttribute('data-author');
+        document.getElementById('detail-distance').textContent = button.getAttribute('data-distance');
+        document.getElementById('detail-start_location').textContent = button.getAttribute('data-start_location');
+        document.getElementById('detail-end_location').textContent = button.getAttribute('data-end_location');
+        document.getElementById('detail-travel_time').textContent = button.getAttribute('data-travel_time');
+        document.getElementById('detail-vehicle').textContent = button.getAttribute('data-vehicle');
     });
 </script>
 
