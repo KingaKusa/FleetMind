@@ -75,9 +75,21 @@ def table(request):
 
 @login_required
 def post_list(request):
-    sort = request.GET.get('sort', 'id')
-    posts = Post.objects.all().order_by(sort)
-    return render(request, 'Fleet/table.html', {'posts': posts})
+    current_sort = request.GET.get('sort', 'title')           # domyślnie sortuj po tytule
+    current_direction = request.GET.get('direction', 'asc')   # domyślnie rosnąco
+
+    order_prefix = '' if current_direction == 'asc' else '-'
+    order_by = order_prefix + current_sort
+
+    posts = Post.objects.all().order_by(order_by)
+
+    context = {
+        'posts': posts,
+        'current_sort': current_sort,
+        'current_direction': current_direction,
+    }
+    return render(request, 'Fleet/post_list.html', context)
+
 
 @login_required
 def create_post(request):

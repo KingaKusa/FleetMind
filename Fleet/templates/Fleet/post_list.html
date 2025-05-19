@@ -1,10 +1,8 @@
 {% extends "Fleet/base.html" %}
-{% block title %}Lista przejazdów{% endblock %}
-
+{% block title %}Przejazdy{% endblock %}
 {% block content %}
-<h2 class="mb-3">Lista przejazdów</h2>
+<h2 class="mb-3">Przejazdy</h2>
 
-<!-- Panel do wyboru sortowania -->
 <form method="get" class="mb-3 d-flex align-items-center gap-2">
     <label for="sort">Sortuj po:</label>
     <select name="sort" id="sort" class="form-select form-select-sm" style="width: auto;">
@@ -30,11 +28,7 @@
                 <a href="?sort=title&direction={% if current_sort == 'title' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
                     Nazwa
                     {% if current_sort == 'title' %}
-                        {% if current_direction == 'asc' %}
-                            ▲
-                        {% else %}
-                            ▼
-                        {% endif %}
+                        {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
                     {% endif %}
                 </a>
             </th>
@@ -42,11 +36,7 @@
                 <a href="?sort=content&direction={% if current_sort == 'content' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
                     Treść
                     {% if current_sort == 'content' %}
-                        {% if current_direction == 'asc' %}
-                            ▲
-                        {% else %}
-                            ▼
-                        {% endif %}
+                        {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
                     {% endif %}
                 </a>
             </th>
@@ -54,11 +44,7 @@
                 <a href="?sort=create_at&direction={% if current_sort == 'create_at' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
                     Data
                     {% if current_sort == 'create_at' %}
-                        {% if current_direction == 'asc' %}
-                            ▲
-                        {% else %}
-                            ▼
-                        {% endif %}
+                        {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
                     {% endif %}
                 </a>
             </th>
@@ -80,7 +66,7 @@
         </tr>
         {% empty %}
         <tr>
-            <td colspan="5" class="text-center">Brak danych do wyświetlenia!</td>
+            <td colspan="5" class="text-center">Brak przejazdów.</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -89,7 +75,7 @@
 <hr>
 <a class="btn btn-outline-primary" href="{% url 'create_post' %}">Dodaj przejazd</a>
 
-<!-- Modal Bootstrap -->
+<!-- Modal do potwierdzenia usunięcia -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
