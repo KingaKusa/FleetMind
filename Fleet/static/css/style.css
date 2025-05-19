@@ -39,3 +39,17 @@ ul.errorlist {
     border: none;
 }
 
+/* Styl dla linków w nagłówkach tabeli */
+table th a {
+    color: inherit;          /* dziedziczy kolor tekstu (np. czarny) */
+    text-decoration: none;   /* usuwa podkreślenie */
+    cursor: pointer;         /* wskazuje, że można kliknąć */
+    font-weight: bold;       /* można pogrubić, by wyglądały jak nagłówki */
+}
+
+/* Opcjonalnie: efekt hover, żeby użytkownik wiedział, że to klikalne */
+table th a:hover {
+    color: #007bff;          /* delikatny niebieski na hover */
+    text-decoration: underline;
+}
+

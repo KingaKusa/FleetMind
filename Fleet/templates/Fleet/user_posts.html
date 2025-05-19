@@ -1,21 +1,75 @@
 {% extends "Fleet/base.html" %}
 {% block title %}Twoje przejazdy{% endblock %}
 {% block content %}
-    <h2 class="mb-3">Twoje przejazdy</h2>
-    <table class="table table-hover">
+<h2 class="mb-3">Twoje przejazdy</h2>
+
+<!-- Panel do wyboru sortowania -->
+<form method="get" class="mb-3 d-flex align-items-center gap-2">
+    <label for="sort">Sortuj po:</label>
+    <select name="sort" id="sort" class="form-select form-select-sm" style="width: auto;">
+        <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Nazwa</option>
+        <option value="content" {% if current_sort == 'content' %}selected{% endif %}>Treść</option>
+        <option value="created_at" {% if current_sort == 'created_at' %}selected{% endif %}>Data</option>
+    </select>
+
+    <label for="direction">Kierunek:</label>
+    <select name="direction" id="direction" class="form-select form-select-sm" style="width: auto;">
+        <option value="asc" {% if current_direction == 'asc' %}selected{% endif %}>Rosnąco</option>
+        <option value="desc" {% if current_direction == 'desc' %}selected{% endif %}>Malejąco</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary btn-sm">Sortuj</button>
+</form>
+
+<table class="table table-hover">
+    <thead>
         <tr>
             <th>Lp.</th>
-            <th><a href="?sort=title">Nazwa</a></th>
-            <th><a href="?sort=content">Treść</a></th>
-            <th><a href="?sort=created_at">Data</a></th>
+            <th>
+                <a href="?sort=title&direction={% if current_sort == 'title' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
+                    Nazwa
+                    {% if current_sort == 'title' %}
+                        {% if current_direction == 'asc' %}
+                            ▲
+                        {% else %}
+                            ▼
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="?sort=content&direction={% if current_sort == 'content' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
+                    Treść
+                    {% if current_sort == 'content' %}
+                        {% if current_direction == 'asc' %}
+                            ▲
+                        {% else %}
+                            ▼
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="?sort=created_at&direction={% if current_sort == 'created_at' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
+                    Data
+                    {% if current_sort == 'created_at' %}
+                        {% if current_direction == 'asc' %}
+                            ▲
+                        {% else %}
+                            ▼
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
             <th>Akcja</th>
         </tr>
+    </thead>
+    <tbody>
         {% for post in posts %}
         <tr id="post-{{ post.id }}">
             <td>{{ forloop.counter }}</td>
             <td>{{ post.title }}</td>
-            <td>{{ post.content }} <br>
-            </td>
+            <td>{{ post.content }} <br></td>
             <td>{{ post.created_at }}</td>
             <td>
                 <a class="btn btn-sm btn-warning" href="{% url 'update_post' post.id %}">Edytuj</a>
@@ -28,7 +82,10 @@
             <td colspan="5" class="text-center">Nie masz żadnych przejazdów.</td>
         </tr>
         {% endfor %}
-    </table>
+    </tbody>
+</table>
+
+
 <hr>
 <a class="btn btn-outline-primary" href="{% url 'create_post' %}">Dodaj przejazd</a>
 

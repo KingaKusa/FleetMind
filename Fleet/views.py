@@ -131,11 +131,24 @@ def user_panel(request):
 
 @login_required
 def user_posts(request):
-    sort = request.GET.get('sort', 'id')
-    posts = Post.objects.filter(author=request.user).order_by(sort)
-    return render(request, "Fleet/user_posts.html", {"posts": posts})
+    valid_sort_fields = ['title', 'content', 'created_at']
+    sort_field = request.GET.get('sort', 'created_at')
+    direction = request.GET.get('direction', 'asc')
 
+    # zabezpieczenie: tylko dozwolone pola
+    if sort_field not in valid_sort_fields:
+        sort_field = 'created_at'
 
+    if direction == 'desc':
+        sort_field = f'-{sort_field}'
+
+    posts = Post.objects.filter(author=request.user).order_by(sort_field)
+
+    return render(request, "Fleet/user_posts.html", {
+        "posts": posts,
+        "current_sort": request.GET.get('sort', 'created_at'),
+        "current_direction": request.GET.get('direction', 'asc')
+    })
 
 # def get_api_key():
 #     """Pobiera klucz API z pliku openai_key.txt"""
