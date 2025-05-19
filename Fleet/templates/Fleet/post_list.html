@@ -134,55 +134,28 @@
 </div>
 
 <script>
-    const csrftoken = '{{ csrf_token }}';
+  // Funkcja pomocnicza: pobiera atrybut data-* lub zwraca tekst zastępczy
+  function getDataAttrOrFallback(button, attr, fallback = "Brak danych") {
+      const val = button.getAttribute(attr);
+      return val ? val : fallback;
+  }
 
-    // Obsługa modala do potwierdzenia usunięcia
-    var deleteModal = document.getElementById('deleteModal');
-    var deleteButton = document.getElementById('confirmDelete');
-    var postIdToDelete = null;
+  // Nasłuchujemy na otwarcie modala detailModal
+  var detailModal = document.getElementById('detailModal');
 
-    deleteModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-        postIdToDelete = button.getAttribute('data-id');
-        var postTitle = button.getAttribute('data-title');
+  detailModal.addEventListener('show.bs.modal', function (event) {
+      var button = event.relatedTarget;
 
-        var modalTitle = deleteModal.querySelector('#postTitle');
-        modalTitle.textContent = postTitle;
-    });
-
-    deleteButton.addEventListener('click', function () {
-        fetch(`/posts/delete/${postIdToDelete}/`, {
-            method: "DELETE",
-            headers: {
-                "X-CSRFToken": csrftoken,
-                "X-Requested-With": "XMLHttpRequest",
-            },
-        }).then(response => {
-            if (response.ok) {
-                document.getElementById(`post-${postIdToDelete}`).remove();
-                var modal = bootstrap.Modal.getInstance(deleteModal);
-                modal.hide();
-            } else {
-                alert("Coś poszło nie tak przy usuwaniu");
-            }
-        });
-    });
-
-    // Obsługa otwarcia modala ze szczegółami
-    var detailModal = document.getElementById('detailModal');
-    detailModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-
-        document.getElementById('detail-title').textContent = button.getAttribute('data-title');
-        document.getElementById('detail-content').textContent = button.getAttribute('data-content');
-        document.getElementById('detail-create_at').textContent = button.getAttribute('data-create_at');
-        document.getElementById('detail-author').textContent = button.getAttribute('data-author');
-        document.getElementById('detail-distance').textContent = button.getAttribute('data-distance');
-        document.getElementById('detail-start_location').textContent = button.getAttribute('data-start_location');
-        document.getElementById('detail-end_location').textContent = button.getAttribute('data-end_location');
-        document.getElementById('detail-travel_time').textContent = button.getAttribute('data-travel_time');
-        document.getElementById('detail-vehicle').textContent = button.getAttribute('data-vehicle');
-    });
+      document.getElementById('detail-title').textContent = getDataAttrOrFallback(button, 'data-title');
+      document.getElementById('detail-content').textContent = getDataAttrOrFallback(button, 'data-content');
+      document.getElementById('detail-create_at').textContent = getDataAttrOrFallback(button, 'data-create_at');
+      document.getElementById('detail-author').textContent = getDataAttrOrFallback(button, 'data-author');
+      document.getElementById('detail-distance').textContent = getDataAttrOrFallback(button, 'data-distance');
+      document.getElementById('detail-start_location').textContent = getDataAttrOrFallback(button, 'data-start_location');
+      document.getElementById('detail-end_location').textContent = getDataAttrOrFallback(button, 'data-end_location');
+      document.getElementById('detail-travel_time').textContent = getDataAttrOrFallback(button, 'data-travel_time');
+      document.getElementById('detail-vehicle').textContent = getDataAttrOrFallback(button, 'data-vehicle');
+  });
 </script>
 
 {% endblock %}
