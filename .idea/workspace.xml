@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="8.0">
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/user_posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/user_posts.html" afterDir="false" />
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="9.0">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -368,11 +366,18 @@
       <option name="project" value="LOCAL" />
       <updated>1747593252809</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="9.0">
+      <option name="closed" value="true" />
+      <created>1747674932986</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1747674932986</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2.2" />
     <MESSAGE value="2.3" />
     <MESSAGE value="3.1" />
     <MESSAGE value="3.2" />
@@ -397,6 +402,7 @@
     <MESSAGE value="6.3" />
     <MESSAGE value="7.1" />
     <MESSAGE value="8.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="8.0" />
+    <MESSAGE value="9.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="9.0" />
   </component>
 </project>
