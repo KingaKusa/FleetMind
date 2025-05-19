@@ -52,6 +52,8 @@
 </div>
 
 <script>
+    const csrftoken = '{{ csrf_token }}';
+
     var deleteModal = document.getElementById('deleteModal');
     var deleteButton = document.getElementById('confirmDelete');
     var postIdToDelete = null;
@@ -69,13 +71,16 @@
         fetch(`/posts/delete/${postIdToDelete}/`, {
             method: "DELETE",
             headers: {
-                "X-CSRFToken": "{{ csrf_token }}",
+                "X-CSRFToken": csrftoken,
+                "X-Requested-With": "XMLHttpRequest",
             },
         }).then(response => {
             if (response.ok) {
                 document.getElementById(`post-${postIdToDelete}`).remove();
                 var modal = bootstrap.Modal.getInstance(deleteModal);
                 modal.hide();
+            } else {
+                alert("Coś poszło nie tak przy usuwaniu");
             }
         });
     });
