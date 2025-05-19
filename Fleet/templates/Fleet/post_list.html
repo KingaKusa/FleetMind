@@ -1,7 +1,7 @@
 {% extends "Fleet/base.html" %}
 {% block title %}Tabela z danymi{% endblock %}
 {% block content %}
-    <table class="table table-hover">
+    <table id="posts-table" class="table table-hover">
         <tr>
             <th>Lp.
             <!--<th>id-->
@@ -79,5 +79,15 @@
         });
     </script>
 
+<script>
+  $(document).ready(function() {
+    $('#posts-table').DataTable({
+      "paging": true,
+      "searching": true,
+      "ordering": true,
+      "order": [[ 3, "desc" ]]  // sortowanie po 4. kolumnie (Data)
+    });
+  });
+</script>
 
 {% endblock %}
