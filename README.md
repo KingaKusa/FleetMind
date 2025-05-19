@@ -69,3 +69,13 @@ python manage.py migrate
 ***Uruchom aplikację:***
 
 python manage.py runserver
+
+-----
+Zabezpieczenia:
+Zastosowałam Multi-Factor authentication (MFA) - w postaci aplikacji uwierzytelniającej. Dzięki temu dane zawarte w aplikacji mają dodatkową warstwę zabezpieczeń.
+
+Baza danych:
+Korzystam z PostgreSQL - to zaawansowany, otwarty system zarządzania bazami danych (DBMS). Jest to obiektowo-relacyjna baza danych, którą wybrałam ze względu na możliwość większej elastyczności i zaawansowania funkcji w stosunku do MySQL.
+
+
+
