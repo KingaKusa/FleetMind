@@ -9,7 +9,7 @@
     <select name="sort" id="sort" class="form-select form-select-sm" style="width: auto;">
         <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Nazwa</option>
         <option value="content" {% if current_sort == 'content' %}selected{% endif %}>Treść</option>
-        <option value="created_at" {% if current_sort == 'created_at' %}selected{% endif %}>Data</option>
+        <option value="create_at" {% if current_sort == 'create_at' %}selected{% endif %}>Data</option>
     </select>
 
     <label for="direction">Kierunek:</label>
@@ -50,9 +50,9 @@
                 </a>
             </th>
             <th>
-                <a href="?sort=created_at&direction={% if current_sort == 'created_at' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
+                <a href="?sort=create_at&direction={% if current_sort == 'create_at' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
                     Data
-                    {% if current_sort == 'created_at' %}
+                    {% if current_sort == 'create_at' %}
                         {% if current_direction == 'asc' %}
                             ▲
                         {% else %}
@@ -70,7 +70,7 @@
             <td>{{ forloop.counter }}</td>
             <td>{{ post.title }}</td>
             <td>{{ post.content }} <br></td>
-            <td>{{ post.created_at }}</td>
+            <td>{{ post.create_at }}</td>
             <td>
                 <a class="btn btn-sm btn-warning" href="{% url 'update_post' post.id %}">Edytuj</a>
                 <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"

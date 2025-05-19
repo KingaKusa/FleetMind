@@ -10,7 +10,7 @@
 {% if posts %}
     <ul>
         {% for post in posts %}
-            <li><strong>{{ post.title }}</strong> - {{ post.created_at }}</li>
+            <li><strong>{{ post.title }}</strong> - {{ post.create_at }}</li>
             <p>{{ post.content }}</p>
             <a href="{% url 'update_post' post.id %}">Edytuj</a> |
             <a href="{% url 'delete_post' post.id %}">Usuń</a>

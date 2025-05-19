@@ -7,14 +7,14 @@
             <!--<th>id-->
             <th><a href="?sort=title">Nazwa</a>
             <th><a href="?sort=content">Treść</a>
-            <th><a href="?sort=created_at">Data</a>
+            <th><a href="?sort=create_at">Data</a>
             <th>Akcja
         {% for post in posts %}
         <tr id="post-{{ post.id }}">
             <td>{{ forloop.counter }}
             <!--<td>{{ post.id }}-->
             <td>{{ post.title }}
-            <td>{{ post.created_at }}
+            <td>{{ post.create_at }}
             <td><a href="{% url 'update_post' post.id %}">Edytuj</a>
                 <!--<a href="{% url 'delete_post' post.id %}">Usuń</a>-->
                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"

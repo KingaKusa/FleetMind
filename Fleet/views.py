@@ -131,13 +131,13 @@ def user_panel(request):
 
 @login_required
 def user_posts(request):
-    valid_sort_fields = ['title', 'content', 'created_at']
-    sort_field = request.GET.get('sort', 'created_at')
+    valid_sort_fields = ['title', 'content', 'create_at']
+    sort_field = request.GET.get('sort', 'create_at')
     direction = request.GET.get('direction', 'asc')
 
     # zabezpieczenie: tylko dozwolone pola
     if sort_field not in valid_sort_fields:
-        sort_field = 'created_at'
+        sort_field = 'create_at'
 
     if direction == 'desc':
         sort_field = f'-{sort_field}'
@@ -146,7 +146,7 @@ def user_posts(request):
 
     return render(request, "Fleet/user_posts.html", {
         "posts": posts,
-        "current_sort": request.GET.get('sort', 'created_at'),
+        "current_sort": request.GET.get('sort', 'create_at'),
         "current_direction": request.GET.get('direction', 'asc')
     })
 

@@ -9,7 +9,7 @@
             <th><a href="?sort=id">Lp</a>
             <th><a href="?sort=title">Tytuł przejazdu</a>
             <th><a href="?sort=content">Destynacja</a>
-            <th><a href="?sort=created_at">Data przejazdu</a>
+            <th><a href="?sort=create_at">Data przejazdu</a>
             <th><a href="?sort=distance">Przejechany dystans</a>
             <th colspan="2">Akcja
         {% for post in posts %}
@@ -17,7 +17,7 @@
             <td>{{ post.id }}
             <td>{{ post.title }}
             <td>{{ post.content }}
-            <td>{{ post.created_at }}
+            <td>{{ post.create_at }}
             <td>{{ post.distance }}
             <td><a href="{% url 'update_post' post.id %}" class="btn btn-outline-primary">Edytuj</a>
             <td>
