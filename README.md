@@ -76,6 +76,9 @@ Zastosowałam Multi-Factor authentication (MFA) - w postaci aplikacji uwierzytel
 
 Baza danych:
 Korzystam z PostgreSQL - to zaawansowany, otwarty system zarządzania bazami danych (DBMS). Jest to obiektowo-relacyjna baza danych, którą wybrałam ze względu na możliwość większej elastyczności i zaawansowania funkcji w stosunku do MySQL.
+Do pracy w środowisku developerskim korzystam z Dockera, by testować lokalnie migracje i upewnić się, że modele pasują do rzeczywistej struktury DB na AWS. Przenoszenie (migracje na zdalnej bazie na AWS) wykonuję po pomyślnym wyniku testów lokalnych.
+
+
 
 
 
