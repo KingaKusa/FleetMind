@@ -1,93 +1,146 @@
 {% extends "Fleet/base.html" %}
-{% block title %}Tabela z danymi{% endblock %}
+{% block title %}Lista przejazdów{% endblock %}
+
 {% block content %}
-    <table id="posts-table" class="table table-hover">
+<h2 class="mb-3">Lista przejazdów</h2>
+
+<!-- Panel do wyboru sortowania -->
+<form method="get" class="mb-3 d-flex align-items-center gap-2">
+    <label for="sort">Sortuj po:</label>
+    <select name="sort" id="sort" class="form-select form-select-sm" style="width: auto;">
+        <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Nazwa</option>
+        <option value="content" {% if current_sort == 'content' %}selected{% endif %}>Treść</option>
+        <option value="create_at" {% if current_sort == 'create_at' %}selected{% endif %}>Data</option>
+    </select>
+
+    <label for="direction">Kierunek:</label>
+    <select name="direction" id="direction" class="form-select form-select-sm" style="width: auto;">
+        <option value="asc" {% if current_direction == 'asc' %}selected{% endif %}>Rosnąco</option>
+        <option value="desc" {% if current_direction == 'desc' %}selected{% endif %}>Malejąco</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary btn-sm">Sortuj</button>
+</form>
+
+<table class="table table-hover">
+    <thead>
         <tr>
-            <th>Lp.
-            <!--<th>id-->
-            <th><a href="?sort=title">Nazwa</a>
-            <th><a href="?sort=content">Treść</a>
-            <th><a href="?sort=create_at">Data</a>
-            <th>Akcja
+            <th>Lp.</th>
+            <th>
+                <a href="?sort=title&direction={% if current_sort == 'title' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
+                    Nazwa
+                    {% if current_sort == 'title' %}
+                        {% if current_direction == 'asc' %}
+                            ▲
+                        {% else %}
+                            ▼
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="?sort=content&direction={% if current_sort == 'content' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
+                    Treść
+                    {% if current_sort == 'content' %}
+                        {% if current_direction == 'asc' %}
+                            ▲
+                        {% else %}
+                            ▼
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="?sort=create_at&direction={% if current_sort == 'create_at' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
+                    Data
+                    {% if current_sort == 'create_at' %}
+                        {% if current_direction == 'asc' %}
+                            ▲
+                        {% else %}
+                            ▼
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for post in posts %}
         <tr id="post-{{ post.id }}">
-            <td>{{ forloop.counter }}
-            <!--<td>{{ post.id }}-->
-            <td>{{ post.title }}
-            <td>{{ post.create_at }}
-            <td><a href="{% url 'update_post' post.id %}">Edytuj</a>
-                <!--<a href="{% url 'delete_post' post.id %}">Usuń</a>-->
-                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                        data-id="{{ post.id }}" data-title="{{ post.title }}">Usuń
-                </button>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ post.title }}</td>
+            <td>{{ post.content }}</td>
+            <td>{{ post.create_at }}</td>
+            <td>
+                <a class="btn btn-sm btn-warning" href="{% url 'update_post' post.id %}">Edytuj</a>
+                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        data-id="{{ post.id }}" data-title="{{ post.title }}">Usuń</button>
+            </td>
+        </tr>
         {% empty %}
         <tr>
-            <td colspan="3">Brak danych do wyświetlenia!
+            <td colspan="5" class="text-center">Brak danych do wyświetlenia!</td>
+        </tr>
         {% endfor %}
-    </table>
+    </tbody>
+</table>
+
 <hr>
 <a class="btn btn-outline-primary" href="{% url 'create_post' %}">Dodaj przejazd</a>
 
-
-    <!-- Modal Bootstrap -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Potwierdzenie usunięcia</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Czy na pewno chcesz usunąć post <strong id="postTitle"></strong>?</p>
-                </div>
-                <div class="modal-footer">
-                    <button id="confirmDelete" class="btn btn-danger">Tak, usuń</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-                </div>
+<!-- Modal Bootstrap -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Potwierdzenie usunięcia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+            </div>
+            <div class="modal-body">
+                <p>Czy na pewno chcesz usunąć przejazd <strong id="postTitle"></strong>?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirmDelete" class="btn btn-danger">Tak, usuń</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
             </div>
         </div>
     </div>
-
-
-    <script>
-        var deleteModal = document.getElementById('deleteModal');
-        var deleteButton = document.getElementById('confirmDelete');
-        var postIdToDelete = null;
-
-        deleteModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget;  // Przycisk, który otworzył modal
-            postIdToDelete = button.getAttribute('data-id');
-            var postTitle = button.getAttribute('data-title');
-
-            var modalTitle = deleteModal.querySelector('#postTitle');
-            modalTitle.textContent = postTitle;
-        });
-
-        deleteButton.addEventListener('click', function () {
-            fetch(`/posts/delete/${postIdToDelete}/`, {
-                method: "DELETE",
-                headers: {
-                    "X-CSRFToken": "{{ csrf_token }}",
-                },
-            }).then(response => {
-                if (response.ok) {
-                    document.getElementById(`post-${postIdToDelete}`).remove();
-                    var modal = bootstrap.Modal.getInstance(deleteModal);
-                    modal.hide();
-                }
-            });
-        });
-    </script>
+</div>
 
 <script>
-  $(document).ready(function() {
-    $('#posts-table').DataTable({
-      "paging": true,
-      "searching": true,
-      "ordering": true,
-      "order": [[ 3, "desc" ]]  // sortowanie po 4. kolumnie (Data)
+    const csrftoken = '{{ csrf_token }}';
+
+    var deleteModal = document.getElementById('deleteModal');
+    var deleteButton = document.getElementById('confirmDelete');
+    var postIdToDelete = null;
+
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        postIdToDelete = button.getAttribute('data-id');
+        var postTitle = button.getAttribute('data-title');
+
+        var modalTitle = deleteModal.querySelector('#postTitle');
+        modalTitle.textContent = postTitle;
     });
-  });
+
+    deleteButton.addEventListener('click', function () {
+        fetch(`/posts/delete/${postIdToDelete}/`, {
+            method: "DELETE",
+            headers: {
+                "X-CSRFToken": csrftoken,
+                "X-Requested-With": "XMLHttpRequest",
+            },
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById(`post-${postIdToDelete}`).remove();
+                var modal = bootstrap.Modal.getInstance(deleteModal);
+                modal.hide();
+            } else {
+                alert("Coś poszło nie tak przy usuwaniu");
+            }
+        });
+    });
 </script>
 
 {% endblock %}
