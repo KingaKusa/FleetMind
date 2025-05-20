@@ -64,7 +64,8 @@
           FleetMindAppContent
         {% endblock %}
       </div>
-
+      <!--Opakowanie panelu użytkownika w block sidebar, by nie wyświetlać tego na stronie HOME-->
+      {% block sidebar %}
       <!-- Panel użytkownika – widoczny tylko, gdy użytkownik jest zalogowany -->
       <div class="user-panel ms-3 p-3 bg-light border rounded">
         {% if user.is_authenticated %}
@@ -88,6 +89,7 @@
           <p><a href="{% url 'login' %}" class="btn btn-success">Zaloguj się</a></p>
         {% endif %}
       </div>
+      {% endblock %}
     </div>
 
     <!-- Skrypty JavaScript: Bootstrap (z bundlem Popper), jQuery oraz DataTables -->
