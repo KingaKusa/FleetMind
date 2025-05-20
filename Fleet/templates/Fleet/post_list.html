@@ -1,172 +1,155 @@
-<!--NAGŁÓWEK I ROZSZERZENIE SZABLONU-->
-<!--Ten plik dziedziczy z szablonu Fleet/base.html. Oznacza to, że cała struktura bazowa strony
-pochodzi z pliku bazowego, a tutaj wstawiam tylko unikalną treść.-->
 {% extends "Fleet/base.html" %}
-<!--Ustawia tytuł strony-->
 {% block title %}Przejazdy{% endblock %}
-<!--GŁÓWNA ZAWARTOŚĆ STRONY-->
-<!--Otwiera blok content, który będzie wstawiony do base.html. Wyświetla nagłówek „Przejazdy”.-->
-{% block content %}
-<h2 class="mb-3">Przejazdy</h2>
 
-<!--FORMULARZ SORTOWANIA-->
-<!--Formularz wysyła dane metodą GET – parametry pojawią się w adresie URL. Służy do sortowania wyników.-->
-<form method="get" class="mb-3 d-flex align-items-center gap-2">
+{% block content %}
+<div class="mt-4">
+  <!-- Nagłówek strony -->
+  <h2 class="mb-3">Przejazdy</h2>
+
+  <!-- Formularz sortowania przejazdów -->
+  <form method="get" class="mb-3 d-flex align-items-center gap-2">
     <label for="sort">Sortuj po:</label>
-<!--Pole wyboru kryterium sortowania (title, content, create_at).-->
+    <!-- Pole wyboru kryterium sortowania -->
     <select name="sort" id="sort" class="form-select form-select-sm" style="width: auto;">
-<!--Zaznacza wybraną opcję, jeśli obecnie sortujemy po danym polu (current_sort przekazywane z widoku).-->
-        <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Nazwa</option>
-        <option value="content" {% if current_sort == 'content' %}selected{% endif %}>Treść</option>
-        <option value="create_at" {% if current_sort == 'create_at' %}selected{% endif %}>Data</option>
+      <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Nazwa</option>
+      <option value="content" {% if current_sort == 'content' %}selected{% endif %}>Treść</option>
+      <option value="create_at" {% if current_sort == 'create_at' %}selected{% endif %}>Data</option>
     </select>
 
     <label for="direction">Kierunek:</label>
-<!--Pole wyboru kierunku sortowania (asc, desc).-->
+    <!-- Pole wyboru kierunku sortowania -->
     <select name="direction" id="direction" class="form-select form-select-sm" style="width: auto;">
-        <option value="asc" {% if current_direction == 'asc' %}selected{% endif %}>Rosnąco</option>
-        <option value="desc" {% if current_direction == 'desc' %}selected{% endif %}>Malejąco</option>
+      <option value="asc" {% if current_direction == 'asc' %}selected{% endif %}>Rosnąco</option>
+      <option value="desc" {% if current_direction == 'desc' %}selected{% endif %}>Malejąco</option>
     </select>
-<!--Wysyła formularz, przeładowując stronę z nowymi parametrami sortowania.-->
-    <button type="submit" class="btn btn-primary btn-sm">Sortuj</button>
-</form>
 
-<!--TABELA PRZEJAZDÓW-->
-<!--Główna tabela z listą przejazdów.-->
-<table class="table table-hover">
-<!--Zawartość pomiędzy <thead>... </thead> - Nagłówek tabeli z kolumnami: numer, nazwa, treść, data i akcje.-->
+    <!-- Przycisk wysyłający formularz -->
+    <button type="submit" class="btn btn-primary btn-sm">Sortuj</button>
+  </form>
+
+  <!-- Tabela z listą przejazdów -->
+  <table class="table table-hover">
     <thead>
-        <tr>
-            <th>Lp.</th>
-            <th>
-<!--Nagłówek kolumny jest linkiem umożliwiającym sortowanie kliknięciem. Kierunek zmienia się dynamicznie.-->
-                <a href="?sort=title&direction={% if current_sort == 'title' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
-                    Nazwa
-                    {% if current_sort == 'title' %}
-                        {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
-                    {% endif %}
-                </a>
-            </th>
-            <th>
-                <a href="?sort=content&direction={% if current_sort == 'content' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
-                    Treść
-                    {% if current_sort == 'content' %}
-                        {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
-                    {% endif %}
-                </a>
-            </th>
-            <th>
-                <a href="?sort=create_at&direction={% if current_sort == 'create_at' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
-                    Data
-                    {% if current_sort == 'create_at' %}
-                        {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
-                    {% endif %}
-                </a>
-            </th>
-            <th>Akcja</th>
-        </tr>
+      <tr>
+        <th>Lp.</th>
+        <th>
+          <!-- Nagłówek kolumny: "Nazwa" z możliwością sortowania -->
+          <a href="?sort=title&direction={% if current_sort == 'title' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
+            Nazwa
+            {% if current_sort == 'title' %}
+              {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
+            {% endif %}
+          </a>
+        </th>
+        <th>
+          <!-- Nagłówek kolumny: "Treść" z dynamicznym sortowaniem -->
+          <a href="?sort=content&direction={% if current_sort == 'content' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
+            Treść
+            {% if current_sort == 'content' %}
+              {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
+            {% endif %}
+          </a>
+        </th>
+        <th>
+          <!-- Nagłówek kolumny: "Data" z możliwością sortowania -->
+          <a href="?sort=create_at&direction={% if current_sort == 'create_at' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
+            Data
+            {% if current_sort == 'create_at' %}
+              {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
+            {% endif %}
+          </a>
+        </th>
+        <th>Akcja</th>
+      </tr>
     </thead>
     <tbody>
-
-<!--WIERSZE Z DANYMI PRZEJAZDÓW-->
-<!--Iteracja po liście posts przekazanej z widoku Django. Każdy post to wiersz tabeli.-->
-        {% for post in posts %}
-        <tr id="post-{{ post.id }}">
-<!--Numer porządkowy (licznik pętli).-->
-            <td>{{ forloop.counter }}</td>
-<!--Wyświetlenie danych z obiektu post.-->
-            <td>{{ post.title }}</td>
-            <td>{{ post.content }}</td>
-            <td>{{ post.create_at }}</td>
-            <td>
-<!--AKCJE: EDYTUJ, USUŃ, SZCZEGÓŁY-->
-<!--Link do widoku edycji posta. Odsyła do strony formularza edycji posta.-->
-<!--                <a class="btn btn-sm btn-warning" href="{% url 'update_post' post.id %}">Edytuj</a>-->
-<!--Otwiera modal z potwierdzeniem usunięcia.-->
-<!--                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"-->
-<!--                        data-id="{{ post.id }}" data-title="{{ post.title }}">Usuń</button>-->
-<!--Otwiera modal ze szczegółami posta – dane są przekazywane jako data-*.-->
-                <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailModal"
-                        data-id="{{ post.id }}"
-                        data-title="{{ post.title }}"
-                        data-content="{{ post.content }}"
-                        data-create_at="{{ post.create_at }}"
-                        data-author="{{ post.author.username }}"
-                        data-distance="{{ post.distance }}"
-                        data-start_location="{{ post.start_location }}"
-                        data-end_location="{{ post.end_location }}"
-                        data-travel_time="{{ post.travel_time }}"
-                        data-vehicle="{{ post.vehicle }}">
-<!--Słowo "szczegóły" wyświetla się na przycisku-->
-                  Szczegóły
-                </button>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="5" class="text-center">Brak przejazdów.</td>
-        </tr>
-        {% endfor %}
+      <!-- Iteracja po liście przejazdów (postów) przekazanej z widoku -->
+      {% for post in posts %}
+      <tr id="post-{{ post.id }}">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ post.title }}</td>
+        <td>{{ post.content }}</td>
+        <td>{{ post.create_at }}</td>
+        <td>
+          <!-- Przycisk otwierający modal ze szczegółami przejazdu.
+               Dane przekazywane są przez atrybuty data-* – zostaną pobrane przez JavaScript -->
+          <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailModal"
+                  data-id="{{ post.id }}"
+                  data-title="{{ post.title }}"
+                  data-content="{{ post.content }}"
+                  data-create_at="{{ post.create_at }}"
+                  data-author="{{ post.author.username }}"
+                  data-distance="{{ post.distance }}"
+                  data-start_location="{{ post.start_location }}"
+                  data-end_location="{{ post.end_location }}"
+                  data-travel_time="{{ post.travel_time }}"
+                  data-vehicle="{{ post.vehicle }}">
+            Szczegóły
+          </button>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5" class="text-center">Brak przejazdów.</td>
+      </tr>
+      {% endfor %}
     </tbody>
+  </table>
 
-</table>
-
-<hr>
-<!--PRZYCISK DODAWANIA PRZEJAZDU-->
-<!--Link do widoku tworzenia nowego przejazdu.-->
-<a class="btn btn-outline-primary" href="{% url 'create_post' %}">Dodaj przejazd</a>
-
-<!--MODAL POTWIERDZENIA USUNIĘCIA-->
-<!--Bootstrapowy modal z pytaniem, czy na pewno chcesz usunąć dany post.-->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Potwierdzenie usunięcia</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
-            </div>
-            <div class="modal-body">
-<!--Tutaj pojawi się tytuł posta, który ma zostać usunięty (wstawiany przez JS).-->
-                <p>Czy na pewno chcesz usunąć przejazd <strong id="postTitle"></strong>?</p>
-            </div>
-<!--DODATKOWE PRZYCISKI POD MODALE-->
-
-<!--            <div class="modal-footer">-->
-<!--                <button id="confirmDelete" class="btn btn-danger">Tak, usuń</button>-->
-<!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>-->
-<!--            </div>-->
-        </div>
-    </div>
+  <hr>
+  <!-- Przycisk przekierowujący do widoku tworzenia nowego przejazdu -->
+  <a class="btn btn-outline-primary" href="{% url 'create_post' %}">Dodaj przejazd</a>
 </div>
 
-<!--JAVASCRIPT - OBSŁUGA MODALA ZE SZCZEGÓŁAMI-->
+<!-- Modal potwierdzenia usunięcia (zakomentowany, gdyż nie jest aktywnie wykorzystywany) -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Potwierdzenie usunięcia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Tytuł przejazdu, którego usunięcie ma zostać potwierdzone; wartość wstawiana przez JavaScript -->
+        <p>Czy na pewno chcesz usunąć przejazd <strong id="postTitle"></strong>?</p>
+      </div>
+      <!-- Dodatkowe przyciski (opcjonalnie) możemy umieścić w stopce modala -->
+      <!--
+      <div class="modal-footer">
+        <button id="confirmDelete" class="btn btn-danger">Tak, usuń</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+      </div>
+      -->
+    </div>
+  </div>
+</div>
 
+<!-- Skrypty JavaScript obsługujące modal szczegółów -->
 <script>
-<!--Funkcja pomocnicza: pobiera dane z atrybutu data-* lub zwraca tekst domyślny (gdy brak danych)-->
+  // Funkcja pomocnicza: pobiera dane z atrybutu data-* lub zwraca tekst domyślny, gdy brak danych.
   function getDataAttrOrFallback(button, attr, fallback = "Brak danych") {
-      const val = button.getAttribute(attr);
-      return val ? val : fallback;
+    const val = button.getAttribute(attr);
+    return val ? val : fallback;
   }
 
-  // Nasłuchujemy na otwarcie modala detailModal
+  // Nasłuchujemy na zdarzenie otwarcia modala ze szczegółami przejazdu.
   var detailModal = document.getElementById('detailModal');
-
-<!--Gdy modal jest otwierany, skrypt pobiera dane z klikniętego przycisku i wstawia je do modala (innerText do spanów).-->
   detailModal.addEventListener('show.bs.modal', function (event) {
-      var button = event.relatedTarget;
+    var button = event.relatedTarget; // Przycisk, który wywołał modal
 
-      document.getElementById('detail-title').textContent = getDataAttrOrFallback(button, 'data-title');
-      document.getElementById('detail-content').textContent = getDataAttrOrFallback(button, 'data-content');
-      document.getElementById('detail-create_at').textContent = getDataAttrOrFallback(button, 'data-create_at');
-      document.getElementById('detail-author').textContent = getDataAttrOrFallback(button, 'data-author');
-      document.getElementById('detail-distance').textContent = getDataAttrOrFallback(button, 'data-distance');
-      document.getElementById('detail-start_location').textContent = getDataAttrOrFallback(button, 'data-start_location');
-      document.getElementById('detail-end_location').textContent = getDataAttrOrFallback(button, 'data-end_location');
-      document.getElementById('detail-travel_time').textContent = getDataAttrOrFallback(button, 'data-travel_time');
-      document.getElementById('detail-vehicle').textContent = getDataAttrOrFallback(button, 'data-vehicle');
+    // Aktualizacja zawartości modala poprzez pobranie danych z atrybutów data-*
+    document.getElementById('detail-title').textContent = getDataAttrOrFallback(button, 'data-title');
+    document.getElementById('detail-content').textContent = getDataAttrOrFallback(button, 'data-content');
+    document.getElementById('detail-create_at').textContent = getDataAttrOrFallback(button, 'data-create_at');
+    document.getElementById('detail-author').textContent = getDataAttrOrFallback(button, 'data-author');
+    document.getElementById('detail-distance').textContent = getDataAttrOrFallback(button, 'data-distance');
+    document.getElementById('detail-start_location').textContent = getDataAttrOrFallback(button, 'data-start_location');
+    document.getElementById('detail-end_location').textContent = getDataAttrOrFallback(button, 'data-end_location');
+    document.getElementById('detail-travel_time').textContent = getDataAttrOrFallback(button, 'data-travel_time');
+    document.getElementById('detail-vehicle').textContent = getDataAttrOrFallback(button, 'data-vehicle');
   });
 </script>
+
+<!-- Doładowanie zewnętrznego pliku JS rozszerzającego funkcjonalność (jeśli istnieje) -->
 <script src="{% static 'js/post_detail.js' %}"></script>
-
-
 {% endblock %}
