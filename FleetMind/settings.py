@@ -9,31 +9,27 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+
 import os
 from pathlib import Path
 
-from django.conf.global_settings import LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL
-
+# Pobieramy zmienną środowiskową, by rozróżnić środowisko (domyślnie 'dev')
 ENV = os.environ.get('ENV', 'dev')
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR ułatwia budowanie ścieżek względem katalogu głównego projektu
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
+# W środowisku produkcyjnym warto przekazywać tę wartość za pomocą zmiennych środowiskowych
 SECRET_KEY = 'django-insecure-@##67hctnu850%4canbi_nwv^wjg(x4pvil40i(=xwg0lmpp)4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS: W trybie developmentu używamy ['*'], ale w produkcji należy podać konkretne domeny
 ALLOWED_HOSTS = ['*']
 
-
-# Application definition
-
+# Aplikacje zainstalowane w projekcie, w tym lokalna aplikacja "Fleet"
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +40,7 @@ INSTALLED_APPS = [
     'Fleet',
 ]
 
+# Middleware – zestaw standardowych middleware używanych przez Django
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,12 +51,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Główna konfiguracja URL – wskazuje na plik urls.py projektu
 ROOT_URLCONF = 'FleetMind.urls'
 
+# Konfiguracja szablonów (templates):
+# Ustawienie APP_DIRS=True pozwala Django szukać szablonów w katalogach poszczególnych aplikacji.
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],  # Jeżeli masz foldery z szablonami poza aplikacjami, dodaj ścieżki tutaj
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,12 +72,11 @@ TEMPLATES = [
     },
 ]
 
+# Konfiguracja WSGI – plik, który pozwala na komunikację serwera z aplikacją Django
 WSGI_APPLICATION = 'FleetMind.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+# Konfiguracja baz danych:
+# Jeśli środowisko to "prod", używamy PostgreSQL, w przeciwnym wypadku SQLite.
 if ENV == 'prod':
     DATABASES = {
         'default': {
@@ -89,18 +88,15 @@ if ENV == 'prod':
             'PORT': os.environ.get('RDS_PORT', '5432'),
         }
     }
-
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
+# Walidacja haseł – standardowe walidatory Django pomagające utrzymać bezpieczeństwo kont użytkowników
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -116,32 +112,28 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
+# Internacjonalizacja: ustawienia dotyczące języka i strefy czasowej
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
+# Konfiguracja plików statycznych
+# STATIC_URL – URL, pod którym będą dostępne pliki statyczne
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+# STATIC_ROOT – katalog, do którego podczas deploymentu zbierane są wszystkie pliki statyczne
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# STATICFILES_DIRS – dodatkowe lokalizacje, w których Django powinno szukać plików statycznych (np. folder "static" w głównym katalogu projektu)
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# Domyślny typ pola klucza głównego
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Ustawienia przekierowań przy logowaniu/wylogowaniu
 LOGIN_REDIRECT_URL = '/user-panel/'
-
 LOGOUT_REDIRECT_URL = '/login/'
-
 LOGIN_URL = '/login/'
-
