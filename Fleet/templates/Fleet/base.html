@@ -2,67 +2,99 @@
 <html lang="pl">
 {% load static %}
   <head>
+    <!-- Podstawowe meta informacje -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" rel="stylesheet">
-      <!-- DataTables CSS -->
+
+    <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+
+    <!-- Własny arkusz stylów -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <!-- Bootstrap Icons dla dodatkowych ikon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- Dynamiczny tytuł strony -->
     <title>{% block title %}FleetMindApp{% endblock %}</title>
   </head>
   <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">FleetMind</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'post_list' %}">Rejestr przejazdów</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Administracja przejazdów
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="{% url 'post_list' %}">Lista przejazdów</a></li>
-            <li><a class="dropdown-item" href="{% url 'create_post' %}">Dodaj przejazd</a></li>
+    <!-- Nawigacja główna -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <!-- Logo/brand: kliknięcie przenosi do strony głównej (tutaj 'post_list') -->
+        <a class="navbar-brand" href="{% url 'post_list' %}">FleetMind</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Elementy nawigacji: linki bezpośrednie i rozwijane menu -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <!-- Link do rejestru przejazdów -->
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'post_list' %}">Rejestr przejazdów</a>
+            </li>
+            <!-- Dropdown: Administracja przejazdów -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Administracja przejazdów
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="{% url 'post_list' %}">Lista przejazdów</a></li>
+                <li><a class="dropdown-item" href="{% url 'create_post' %}">Dodaj przejazd</a></li>
+              </ul>
+            </li>
           </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+        </div>
+      </div>
+    </nav>
 
-<div class="container d-flex">
-    <div class="main-content flex-grow-1">
-        {% block content %}FleetMindAppContent{% endblock %}
-    </div>
-    <div class="user-panel ms-3 p-3 bg-light border rounded">
+    <!-- Główny kontener: zawiera główną treść oraz panel użytkownika -->
+    <div class="container d-flex mt-4">
+      <!-- Sekcja głównej zawartości – zmienna treść przekazywana z innych szablonów -->
+      <div class="main-content flex-grow-1">
+        {% block content %}
+          <!-- Domyślna zawartość, jeżeli blok nie zostanie nadpisany -->
+          FleetMindAppContent
+        {% endblock %}
+      </div>
+
+      <!-- Panel użytkownika – widoczny tylko, gdy użytkownik jest zalogowany -->
+      <div class="user-panel ms-3 p-3 bg-light border rounded">
         {% if user.is_authenticated %}
-            <h3>Panel użytkownika</h3>
-            <p>Witaj, {{ user.username }}!</p>
-            <ul class="list-unstyled">
-                <li><a href="{% url 'user_panel' %}" class="btn btn-primary">Twój profil</a></li>
-                <li><a class="dropdown-item" href="{% url 'user_posts' %}">Twoje przejazdy</a></li>
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Wyloguj się</button>
-                </form>
-
-            </ul>
+          <h3>Panel użytkownika</h3>
+          <p>Witaj, {{ user.username }}!</p>
+          <ul class="list-unstyled">
+            <li>
+              <a href="{% url 'user_panel' %}" class="btn btn-primary btn-sm mb-2">Twój profil</a>
+            </li>
+            <li>
+              <a href="{% url 'user_posts' %}" class="btn btn-info btn-sm mb-2">Twoje przejazdy</a>
+            </li>
+          </ul>
+          <!-- Formularz wylogowania -->
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Wyloguj się</button>
+          </form>
         {% else %}
-            <p><a href="{% url 'login' %}" class="btn btn-success">Zaloguj się</a></p>
+          <!-- Jeśli użytkownik nie jest zalogowany, wyświetlamy przycisk do logowania -->
+          <p><a href="{% url 'login' %}" class="btn btn-success">Zaloguj się</a></p>
         {% endif %}
+      </div>
     </div>
-</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Skrypty JavaScript: Bootstrap (z bundlem Popper), jQuery oraz DataTables -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   </body>
 </html>
-

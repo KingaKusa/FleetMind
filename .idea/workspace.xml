@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="10.6" />
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="10.7" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,14 +109,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743253172273</updated>
-    </task>
-    <task id="LOCAL-00001" summary="1.2">
-      <option name="closed" value="true" />
-      <created>1747328713480</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1747328713480</updated>
     </task>
     <task id="LOCAL-00002" summary="2.1">
       <option name="closed" value="true" />
@@ -502,7 +494,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747769021996</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="10.7">
+      <option name="closed" value="true" />
+      <created>1747769222972</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1747769222972</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -517,7 +517,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="5.7" />
     <MESSAGE value="5.8" />
     <MESSAGE value="5.9" />
     <MESSAGE value="6.0" />
@@ -542,6 +541,7 @@
     <MESSAGE value="10.4" />
     <MESSAGE value="10.5" />
     <MESSAGE value="10.6" />
-    <option name="LAST_COMMIT_MESSAGE" value="10.6" />
+    <MESSAGE value="10.7" />
+    <option name="LAST_COMMIT_MESSAGE" value="10.7" />
   </component>
 </project>
