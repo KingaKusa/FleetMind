@@ -1,55 +1,66 @@
+/*
+  Plik style.css zawiera niestandardowe style dla elementów interfejsu aplikacji FleetMind.
+  Należy go umieścić w folderze static/css.
+*/
+
+/* Definicje dla głównego kontenera: ustawienie elastycznego rozmieszczenia elementów */
 .container {
-    display: flex;
-    justify-content: space-between;
+    display: flex;                /* Ustawia elementy w jednym wierszu */
+    justify-content: space-between; /* Rozkłada elementy równomiernie na dostępnej szerokości */
 }
 
+/* Ustawienia dla głównej treści, która zajmuje większą przestrzeń */
 .main-content {
-    flex: 3;
+    flex: 3;  /* Elastyczne powiększenie – zajmuje 3 jednostki przestrzeni */
 }
 
+/* Stylizacja panelu użytkownika: osobna sekcja z wyraźnym oddzieleniem */
 .user-panel {
-    flex: 1;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-left: 2px solid #ddd;
-    min-width: 250px;
+    flex: 1;                    /* Zajmuje 1 jednostkę przestrzeni */
+    padding: 20px;              /* Wewnętrzny odstęp */
+    background-color: #f8f9fa;  /* Jasne tło pasujące do motywu bootstrapowego */
+    border-left: 2px solid #ddd;/* Lewy pasek oddzielający panel */
+    min-width: 250px;           /* Minimalna szerokość, by zawartość była czytelna */
 }
 
+/* Klasa dla wyróżnienia komunikatów błędów */
 .text-danger {
-    color: #dc3545 !important;
+    color: #dc3545 !important;  /* Kolor czerwony */
     font-weight: bold;
     font-size: 16px;
 }
 
+/* Style dla listy błędów wyświetlanych przez formularze */
 ul.errorlist {
-    list-style-type: none;
+    list-style-type: none; /* Usuwa domyślne punktorowanie */
     padding: 0;
     margin: 0;
     color: red !important;
     font-weight: bold;
 }
 
+/* Stylizacja kart (np. paneli lub formularzy) */
 .card {
     padding: 30px;
     max-width: 600px;
 }
 
+/* Dostosowanie wyglądu elementów w grupach wejściowych */
 .input-group-text {
     background: transparent !important;
     border: none;
 }
 
-/* Styl dla linków w nagłówkach tabeli */
+/* Styl dla linków w nagłówkach tabeli – umożliwia sortowanie */
 table th a {
-    color: inherit;          /* dziedziczy kolor tekstu (np. czarny) */
-    text-decoration: none;   /* usuwa podkreślenie */
-    cursor: pointer;         /* wskazuje, że można kliknąć */
-    font-weight: bold;       /* można pogrubić, by wyglądały jak nagłówki */
+    color: inherit;          /* Dziedziczy kolor tekstu */
+    text-decoration: none;   /* Usuwa podkreślenie */
+    cursor: pointer;         /* Kursor wskazuje, że element jest klikalny */
+    font-weight: bold;       /* Pogrubiony tekst dla wyróżnienia */
 }
 
-/* Opcjonalnie: efekt hover, żeby użytkownik wiedział, że to klikalne */
+/* Opcjonalny efekt hover, informujący użytkownika o możliwości kliknięcia */
 table th a:hover {
-    color: #007bff;          /* delikatny niebieski na hover */
+    color: #007bff;          /* Delikatny niebieski na hover */
     text-decoration: underline;
 }
-
