@@ -1,10 +1,16 @@
 {% extends "Fleet/base.html" %}
 {% block title %}Usuń post{% endblock %}
+
 {% block content %}
-    <p>Czy na pewno chcesz usunąc post o temacie: "{{ post.title }}" ?</p>
+<div class="mt-4">
+    <!-- Komunikat pytający użytkownika o potwierdzenie usunięcia posta -->
+    <p>Czy na pewno chcesz usunąć post o temacie: "<strong>{{ post.title }}</strong>"?</p>
+    <!-- Formularz potwierdzający usunięcie posta -->
     <form method="POST">
         {% csrf_token %}
-        <button type="submit">Tak, usuń!</button><br>
-        <a href="{% url 'post_list' %}">Nie, wróć na listę postów</a>
+        <button type="submit" class="btn btn-danger">Tak, usuń!</button>
     </form>
+    <!-- Link powrotu do listy postów -->
+    <a href="{% url 'post_list' %}" class="btn btn-secondary mt-2">Nie, wróć na listę postów</a>
+</div>
 {% endblock %}
