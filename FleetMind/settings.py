@@ -119,13 +119,17 @@ USE_I18N = True
 USE_TZ = True
 
 # Konfiguracja plików statycznych
-# STATIC_URL – URL, pod którym będą dostępne pliki statyczne
+# STATIC_URL – to adres URL, pod którym przeglądarka będzie szukać plików (zasobów) statycznych
 STATIC_URL = 'static/'
 
 # STATIC_ROOT – katalog, do którego podczas deploymentu zbierane są wszystkie pliki statyczne
+# Używamy tego ustawienia w produkcji, aby serwer mógł zaserwować wszystkie pliki z jednej lokalizacji.
+# Ustawienie to jest wykorzystywane na produkcji. Podczas wdrożenia wykonać polecenie [python manage.py collectstatic]
+# Następnie po tym poleceniu, serwer WWW może podać wszystkie pliki do jednego katalogu.
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# STATICFILES_DIRS – dodatkowe lokalizacje, w których Django powinno szukać plików statycznych (np. folder "static" w głównym katalogu projektu)
+# STATICFILES_DIRS – to lista fodlerów, w których Django szuka plików statycznych podczas developmentu.
+# (np. folder "static" w głównym katalogu projektu)- zazwyczaj wskazuje się na folder 'static' w katalogu głównym projektu
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]

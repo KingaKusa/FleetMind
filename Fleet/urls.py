@@ -16,11 +16,16 @@ from .views import (
     user_panel,
     CustomLoginView,
     user_posts,
-    post_detail_json
+    post_detail_json,
+    home
 )
 from django.contrib.auth.views import LogoutView, LoginView
 
 urlpatterns = [
+    # Strona startowa (HOME) jako domyślny adres
+    # Dwie ścieżki – pusta ('') i 'home/' – kierują do widoku home dzięki czemu użytkownik trafia tam po przejściu na główny adres witryny.
+    path('', home, name='home'),
+    path('home/', home, name='home'),
     # Ścieżka demonstracyjna: wyświetlanie listy użytkowników ("hello_users").
     path('hello/', hello_users, name='hello_users'),
 

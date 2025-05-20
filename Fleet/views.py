@@ -87,6 +87,15 @@ def hello_users(request):
         """)
 
 
+def home(request):
+    """
+    Widok strony startowej (HOME).
+    Jeśli użytkownik jest zalogowany, może przejść do listy przejazdów,
+    w przeciwnym razie zachęcamy do zalogowania lub rejestracji.
+    """
+    return render(request, "Fleet/home.html")
+
+
 def hello_name(request, name):
     """
     Widok wyświetlający stronę powitalną dedykowaną dla konkretnej osoby.

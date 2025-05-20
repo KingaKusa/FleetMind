@@ -1,0 +1,20 @@
+{% extends "Fleet/base.html" %}
+{% load static %}
+
+{% block title %}Witamy w FleetMind!{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h1>Witamy w FleetMind!</h1>
+    <p>Zapraszamy do korzystania z naszej aplikacji do zarządzania przejazdami.</p>
+    {% if user.is_authenticated %}
+        <p>Jesteś zalogowany jako <strong>{{ user.username }}</strong>.</p>
+        <a class="btn btn-primary" href="{% url 'post_list' %}">Przejdź do przejazdów</a>
+    {% else %}
+        <p>Jeśli już posiadasz konto, zaloguj się:</p>
+        <a class="btn btn-success" href="{% url 'login' %}">Zaloguj się</a>
+        <p class="mt-3">Nie masz konta? Załóż je teraz:</p>
+        <a class="btn btn-info" href="{% url 'register' %}">Załóż konto</a>
+    {% endif %}
+</div>
+{% endblock %}
