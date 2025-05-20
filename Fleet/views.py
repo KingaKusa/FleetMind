@@ -61,18 +61,12 @@ def hello_users(request):
         <p>{task_list if task_list else "Brak zadań"}</p>
         """)
 
-
-
-
-
-
-
 def hello_name(request, name):
     return render (request, 'Fleet/hello_name.html', {'name': name})
 
-def table(request):
-    posts = []
-    return render(request, 'Fleet/table.html', {'posts': posts})
+# def table(request):
+#     posts = []
+#     return render(request, 'Fleet/table.html', {'posts': posts})
 
 @login_required
 def post_list(request):

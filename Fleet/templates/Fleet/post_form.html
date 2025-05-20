@@ -6,7 +6,9 @@
 <h2>{{ title }}</h2>
 <form method="POST">
     {% csrf_token %}
+<!--renderuje pola formularza-->
     {{ form.as_p }}
+<!--zapisuje dane-->
     <input type="submit" value="Zapisz">
 </form>
 {% endblock %}

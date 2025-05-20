@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import hello_users, hello_name, table, post_list, create_post, update_post, delete_post, register, \
+from .views import hello_users, hello_name, post_list, create_post, update_post, delete_post, register, \
     user_panel, CustomLoginView, user_posts, post_detail_json
-# from .views import chat
+# from .views import chat, table
 from django.contrib.auth.views import LogoutView, LoginView
 
 urlpatterns = [
@@ -12,14 +12,12 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('user-panel/', user_panel, name='user_panel'),
     path('user_posts/', user_posts, name='user_posts'),
-    path('table/', table, name='table'),
+    # path('table/', table, name='table'),
     path('posts/', post_list, name='post_list'),
     path('posts/create/', create_post, name='create_post'),
     path('posts/update/<int:post_id>/', update_post, name='update_post'),
     path('posts/delete/<int:post_id>/', delete_post, name='delete_post'),
     path('posts/detail/<int:post_id>/', post_detail_json, name='post_detail_json'),
     # path('chat/', chat, name='chat'),
-
-
 
 ]

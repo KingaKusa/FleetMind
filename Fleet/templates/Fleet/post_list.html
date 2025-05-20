@@ -80,7 +80,7 @@ pochodzi z pliku bazowego, a tutaj wstawiam tylko unikalną treść.-->
             <td>{{ post.create_at }}</td>
             <td>
 <!--AKCJE: EDYTUJ, USUŃ, SZCZEGÓŁY-->
-<!--Link do widoku edycji posta.-->
+<!--Link do widoku edycji posta. Odsyła do strony formularza edycji posta.-->
                 <a class="btn btn-sm btn-warning" href="{% url 'update_post' post.id %}">Edytuj</a>
 <!--Otwiera modal z potwierdzeniem usunięcia.-->
                 <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
