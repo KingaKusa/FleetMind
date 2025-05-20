@@ -24,7 +24,7 @@
       <option value="desc" {% if current_direction == 'desc' %}selected{% endif %}>Malejąco</option>
     </select>
 
-    <!-- Przycisk wysyłający formularz -->
+    <!-- Przycisk wysyłający formularz sortowania -->
     <button type="submit" class="btn btn-primary btn-sm">Sortuj</button>
   </form>
 
@@ -34,7 +34,7 @@
       <tr>
         <th>Lp.</th>
         <th>
-          <!-- Nagłówek kolumny: "Nazwa" z możliwością sortowania -->
+          <!-- Nagłówek kolumny: "Nazwa" z dynamicznym sortowaniem -->
           <a href="?sort=title&direction={% if current_sort == 'title' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
             Nazwa
             {% if current_sort == 'title' %}
@@ -52,7 +52,7 @@
           </a>
         </th>
         <th>
-          <!-- Nagłówek kolumny: "Data" z możliwością sortowania -->
+          <!-- Nagłówek kolumny: "Data" z dynamicznym sortowaniem -->
           <a href="?sort=create_at&direction={% if current_sort == 'create_at' and current_direction == 'asc' %}desc{% else %}asc{% endif %}">
             Data
             {% if current_sort == 'create_at' %}
@@ -73,7 +73,7 @@
         <td>{{ post.create_at }}</td>
         <td>
           <!-- Przycisk otwierający modal ze szczegółami przejazdu.
-               Dane przekazywane są przez atrybuty data-* – zostaną pobrane przez JavaScript -->
+               Dane przekazywane są przez atrybuty data-* i zostaną pobrane przez JavaScript -->
           <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailModal"
                   data-id="{{ post.id }}"
                   data-title="{{ post.title }}"
@@ -98,80 +98,28 @@
   </table>
 
   <hr>
-  <!-- Przycisk dodający przejazd – otwiera modal dodawania -->
+  <!-- Przycisk otwierający modal dodawania przejazdu -->
   <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createPostModal">
     Dodaj przejazd
   </button>
 </div>
 
-<!-- Modal potwierdzenia usunięcia (zakomentowany, gdyż nie jest aktywnie wykorzystywany) -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Potwierdzenie usunięcia</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Tytuł przejazdu, którego usunięcie ma zostać potwierdzone; wartość wstawiana przez JavaScript -->
-        <p>Czy na pewno chcesz usunąć przejazd <strong id="postTitle"></strong>?</p>
-      </div>
-      <!-- Dodatkowe przyciski (opcjonalnie) możemy umieścić w stopce modala -->
-      <!--
-      <div class="modal-footer">
-        <button id="confirmDelete" class="btn btn-danger">Tak, usuń</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-      </div>
-      -->
-    </div>
-  </div>
-</div>
+<!-- Włączenie partiali zawierających kody modalów -->
+{% include "Fleet/partials/_create_post_modal.html" %}
+{% include "Fleet/partials/_detail_modal.html" %}
 
-<!-- Modal ze szczegółami przejazdu -->
-<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <!-- Nagłówek modala -->
-      <div class="modal-header">
-        <h5 class="modal-title" id="detailModalLabel">Szczegóły przejazdu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
-      </div>
-      <!-- Treść modala -->
-      <div class="modal-body">
-        <!-- Elementy, które zostaną uzupełnione danymi przekazanymi przez atrybuty data-* -->
-        <p><strong>Tytuł:</strong> <span id="detail-title"></span></p>
-        <p><strong>Treść:</strong> <span id="detail-content"></span></p>
-        <p><strong>Data utworzenia:</strong> <span id="detail-create_at"></span></p>
-        <p><strong>Autor:</strong> <span id="detail-author"></span></p>
-        <p><strong>Dystans:</strong> <span id="detail-distance"></span></p>
-        <p><strong>Miejsce początkowe:</strong> <span id="detail-start_location"></span></p>
-        <p><strong>Miejsce końcowe:</strong> <span id="detail-end_location"></span></p>
-        <p><strong>Czas podróży:</strong> <span id="detail-travel_time"></span></p>
-        <p><strong>Pojazd:</strong> <span id="detail-vehicle"></span></p>
-      </div>
-      <!-- Stopka modala ze przyciskami -->
-      <div class="modal-footer">
-        <a href="#" id="editLink" class="btn btn-warning">Edytuj</a>
-        <button id="deleteBtn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Usuń</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Skrypty JavaScript obsługujące modal szczegółów -->
+<!-- JavaScript obsługujący wstawianie danych do modala szczegółów -->
 <script>
-  // Funkcja pomocnicza: pobiera dane z atrybutu data-* lub zwraca tekst domyślny, gdy brak danych.
+  // Funkcja pomocnicza: pobiera dane z atrybutu data-* lub zwraca domyślny tekst, jeśli atrybut jest pusty.
   function getDataAttrOrFallback(button, attr, fallback = "Brak danych") {
     const val = button.getAttribute(attr);
     return val ? val : fallback;
   }
 
-  // Nasłuchujemy na zdarzenie otwarcia modala ze szczegółami przejazdu.
+  // Nasłuchiwanie zdarzenia otwarcia modala ze szczegółami przejazdu
   var detailModal = document.getElementById('detailModal');
   detailModal.addEventListener('show.bs.modal', function (event) {
     var button = event.relatedTarget; // Przycisk, który wywołał modal
-
     // Aktualizacja zawartości modala poprzez pobranie danych z atrybutów data-*
     document.getElementById('detail-title').textContent = getDataAttrOrFallback(button, 'data-title');
     document.getElementById('detail-content').textContent = getDataAttrOrFallback(button, 'data-content');
@@ -185,6 +133,6 @@
   });
 </script>
 
-<!-- Doładowanie zewnętrznego pliku JS rozszerzającego funkcjonalność (jeśli istnieje) -->
+<!-- Ładowanie zewnętrznego pliku JavaScript rozszerzającego funkcjonalność modala-->
 <script src="{% static 'js/post_detail.js' %}"></script>
 {% endblock %}
