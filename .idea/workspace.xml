@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="10.17">
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="11.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fleet/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/Auth/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/Auth/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/create_post.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/create_post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,22 +115,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743253172273</updated>
-    </task>
-    <task id="LOCAL-00012" summary="3.7">
-      <option name="closed" value="true" />
-      <created>1747483872013</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1747483872013</updated>
-    </task>
-    <task id="LOCAL-00013" summary="3.8">
-      <option name="closed" value="true" />
-      <created>1747484276272</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1747484276272</updated>
     </task>
     <task id="LOCAL-00014" summary="4.0">
       <option name="closed" value="true" />
@@ -506,7 +492,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747772657802</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="11.1">
+      <option name="closed" value="true" />
+      <created>1747773439202</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1747773439202</updated>
+    </task>
+    <task id="LOCAL-00062" summary="11.2">
+      <option name="closed" value="true" />
+      <created>1747773516880</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1747773516880</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -521,8 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="9.2" />
-    <MESSAGE value="9.3" />
     <MESSAGE value="9.4" />
     <MESSAGE value="9.5" />
     <MESSAGE value="9.6" />
@@ -546,6 +546,8 @@
     <MESSAGE value="10.15" />
     <MESSAGE value="10.16" />
     <MESSAGE value="10.17" />
-    <option name="LAST_COMMIT_MESSAGE" value="10.17" />
+    <MESSAGE value="11.1" />
+    <MESSAGE value="11.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="11.2" />
   </component>
 </project>

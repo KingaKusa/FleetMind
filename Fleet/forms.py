@@ -12,15 +12,40 @@ from django.contrib.auth.forms import AuthenticationForm  # Import wbudowanego f
 class PostForm(forms.ModelForm):
     """
     Formularz do tworzenia lub edycji postów.
-    Używa modelu Post i umożliwia wprowadzenie tytułu oraz treści posta.
-    Korzysta z dedykowanych widgetów, aby nadać formularzowi styl (Bootstrap 'form-control').
+    Używa modelu Post i umożliwia wprowadzenie tytułu, treści posta oraz dodatkowych pól:
+      - dystans,
+      - miejsce początkowe,
+      - miejsce końcowe,
+      - czas podróży,
+      - pojazd.
+    Korzysta z dedykowanych widgetów, aby nadać formularzowi styl (Bootstrap 'form-control')
+    oraz pomocnicze placeholdery, które ułatwiają użytkownikowi wprowadzanie danych.
     """
+    # Pole travel_time/czas podróży definiujemy jako DurationField z widgetem TimeInput
+    # Format hh:mm:ss. Pole jest opcjonalne oraz posiada pomocniczy tekst.
+    travel_time = forms.DurationField(
+        widget=forms.TimeInput(format='%H:%M:%S', attrs={
+            'class': 'form-control',
+            'placeholder': 'hh:mm:ss'
+        }),
+        required=False,
+        help_text="Wprowadź czas w formacie hh:mm:ss (np. 01:30:00)"
+    )
+
     class Meta:
         model = Post
-        # Definiujemy, które pola modelu mają być użyte w formularzu
-        fields = ["title", "content"]
+        # Definiujemy, które pola modelu mają być użyte w formularzu.
+        # Dodaliśmy nowe pola: distance, start_location, end_location, travel_time, vehicle.
+        fields = ["title", "content", "distance", "start_location", "end_location", "travel_time", "vehicle"]
         # Etykiety wyświetlane przy poszczególnych polach
-        labels = {"title": "Tytuł posta", "content": "Treść posta"}
+        labels = {
+            "title": "Tytuł posta",
+            "content": "Treść posta",
+            "distance": "Dystans (km)",
+            "start_location": "Miejsce początkowe",
+            "end_location": "Miejsce końcowe",
+            "vehicle": "Pojazd"
+        }
         # Widgety umożliwiają dostosowanie wyglądu pól formularza (np. dodanie klas CSS i placeholderów)
         widgets = {
             "title": forms.TextInput(attrs={
@@ -31,6 +56,23 @@ class PostForm(forms.ModelForm):
                 "class": "form-control",
                 "placeholder": "Podaj treść posta",
                 "rows": 5
+            }),
+            "distance": forms.NumberInput(attrs={
+                "class": "form-control",
+                "placeholder": "Podaj dystans w km",
+                "step": "any"
+            }),
+            "start_location": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Podaj miejsce początkowe"
+            }),
+            "end_location": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Podaj miejsce końcowe"
+            }),
+            "vehicle": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Podaj pojazd"
             }),
         }
 
@@ -109,7 +151,6 @@ class CustomLoginForm(AuthenticationForm):
         "invalid_login": "Niepoprawny login lub hasło. Spróbuj ponownie.",
         "inactive": "Twoje konto jest nieaktywne.",
     }
-
 
 
 # class ChatForm(forms.Form):

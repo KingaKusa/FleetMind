@@ -2,23 +2,57 @@
 {% block title %}Dodaj przejazd{% endblock %}
 
 {% block content %}
-<!-- Formularz do dodawania nowego przejazdu -->
-<form method="POST" class="mt-4">
+<div class="mt-4">
+  <h2>Dodaj przejazd</h2>
+  <!-- Formularz dodawania nowego posta -->
+  <form method="POST">
     {% csrf_token %}
 
-    <!-- Pole formularza do wprowadzenia tytułu posta -->
+    <!-- Pole tytułu posta -->
     <div class="mb-3">
-        <label for="id_title" class="form-label">Tytuł posta:</label>
-        <input type="text" name="title" id="id_title" class="form-control" required>
+      <label for="title" class="form-label">Tytuł posta:</label>
+      <input type="text" name="title" id="title" class="form-control" placeholder="Podaj tytuł" required>
     </div>
 
-    <!-- Pole formularza do wprowadzenia treści posta -->
+    <!-- Pole treści posta -->
     <div class="mb-3">
-        <label for="id_content" class="form-label">Treść posta:</label>
-        <textarea name="content" id="id_content" rows="10" cols="50" class="form-control" required></textarea>
+      <label for="content" class="form-label">Treść posta:</label>
+      <textarea name="content" id="content" class="form-control" placeholder="Podaj treść posta" rows="5" required></textarea>
     </div>
 
-    <!-- Przycisk do zatwierdzenia formularza -->
+    <!-- Pole dystansu -->
+    <div class="mb-3">
+      <label for="distance" class="form-label">Dystans (km):</label>
+      <input type="number" step="any" name="distance" id="distance" class="form-control" placeholder="Podaj dystans">
+    </div>
+
+    <!-- Pole miejsca początkowego -->
+    <div class="mb-3">
+      <label for="start_location" class="form-label">Miejsce początkowe:</label>
+      <input type="text" name="start_location" id="start_location" class="form-control" placeholder="Podaj miejsce początkowe">
+    </div>
+
+    <!-- Pole miejsca końcowego -->
+    <div class="mb-3">
+      <label for="end_location" class="form-label">Miejsce końcowe:</label>
+      <input type="text" name="end_location" id="end_location" class="form-control" placeholder="Podaj miejsce końcowe">
+    </div>
+
+    <!-- Pole czasu podróży -->
+    <!-- Użytkownik wpisuje czas w formacie hh:mm:ss. Warto rozważyć dodatkową walidację (np. po stronie backendu) -->
+    <div class="mb-3">
+      <label for="travel_time" class="form-label">Czas podróży (hh:mm:ss):</label>
+      <input type="text" name="travel_time" id="travel_time" class="form-control" placeholder="Podaj czas podróży">
+    </div>
+
+    <!-- Pole pojazdu -->
+    <div class="mb-3">
+      <label for="vehicle" class="form-label">Pojazd:</label>
+      <input type="text" name="vehicle" id="vehicle" class="form-control" placeholder="Podaj pojazd">
+    </div>
+
+    <!-- Przycisk wysyłający formularz -->
     <button type="submit" class="btn btn-primary">Wprowadź przejazd</button>
-</form>
+  </form>
+</div>
 {% endblock %}
