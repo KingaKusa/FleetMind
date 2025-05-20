@@ -1,0 +1,48 @@
+<!--MODAL SZCZEGÓŁÓW PRZEJAZDU-->
+<!--Bootstrapowy modal, który pokazuje dane szczegółowe.-->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailModalLabel">Szczegóły przejazdu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+      </div>
+      <div class="modal-body">
+        <!--Elementy, które zostaną uzupełnione danymi JavaScript-em.-->
+        <p><strong>Tytuł:</strong> <span id="detail-title"></span></p>
+        <p><strong>Treść:</strong> <span id="detail-content"></span></p>
+        <p><strong>Data utworzenia:</strong> <span id="detail-create_at"></span></p>
+        <p><strong>Autor:</strong> <span id="detail-author"></span></p>
+        <p><strong>Distance:</strong> <span id="detail-distance"></span></p>
+        <p><strong>Start location:</strong> <span id="detail-start_location"></span></p>
+        <p><strong>End location:</strong> <span id="detail-end_location"></span></p>
+        <p><strong>Travel time:</strong> <span id="detail-travel_time"></span></p>
+        <p><strong>Vehicle:</strong> <span id="detail-vehicle"></span></p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" id="editLink" class="btn btn-warning">Edytuj</a>
+        <button id="deleteBtn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Usuń</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL POTWIERDZENIA USUNIĘCIA-->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Potwierdzenie usunięcia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+      </div>
+      <div class="modal-body">
+        Czy na pewno chcesz usunąć ten przejazd?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <button id="confirmDeleteBtn" type="button" class="btn btn-danger">Usuń</button>
+      </div>
+    </div>
+  </div>
+</div>

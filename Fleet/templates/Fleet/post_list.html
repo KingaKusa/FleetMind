@@ -87,6 +87,7 @@ pochodzi z pliku bazowego, a tutaj wstawiam tylko unikalną treść.-->
 <!--                        data-id="{{ post.id }}" data-title="{{ post.title }}">Usuń</button>-->
 <!--Otwiera modal ze szczegółami posta – dane są przekazywane jako data-*.-->
                 <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailModal"
+                        data-id="{{ post.id }}"
                         data-title="{{ post.title }}"
                         data-content="{{ post.content }}"
                         data-create_at="{{ post.create_at }}"
@@ -96,6 +97,7 @@ pochodzi z pliku bazowego, a tutaj wstawiam tylko unikalną treść.-->
                         data-end_location="{{ post.end_location }}"
                         data-travel_time="{{ post.travel_time }}"
                         data-vehicle="{{ post.vehicle }}">
+<!--Słowo "szczegóły" wyświetla się na przycisku-->
                   Szczegóły
                 </button>
             </td>
@@ -106,37 +108,6 @@ pochodzi z pliku bazowego, a tutaj wstawiam tylko unikalną treść.-->
         </tr>
         {% endfor %}
     </tbody>
-
-<!--MODAL SZCZEGÓŁÓW PRZEJAZDU-->
-<!--Bootstrapowy modal, który pokazuje dane szczegółowe.-->
-    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="detailModalLabel">Szczegóły przejazdu</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
-          </div>
-          <div class="modal-body">
-<!--Elementy, które zostaną uzupełnione danymi JavaScript-em.-->
-            <p><strong>Tytuł:</strong> <span id="detail-title"></span></p>
-            <p><strong>Treść:</strong> <span id="detail-content"></span></p>
-            <p><strong>Data utworzenia:</strong> <span id="detail-create_at"></span></p>
-            <p><strong>Autor:</strong> <span id="detail-author"></span></p>
-            <p><strong>Distance:</strong> <span id="detail-distance"></span></p>
-            <p><strong>Start location:</strong> <span id="detail-start_location"></span></p>
-            <p><strong>End location:</strong> <span id="detail-end_location"></span></p>
-            <p><strong>Travel time:</strong> <span id="detail-travel_time"></span></p>
-            <p><strong>Vehicle:</strong> <span id="detail-vehicle"></span></p>
-          </div>
-          <div class="modal-footer">
-            <a href="#" id="editLink" class="btn btn-warning">Edytuj</a>
-            <button id="deleteBtn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Usuń</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-        </div>
-
-        </div>
-      </div>
-    </div>
 
 </table>
 
@@ -195,5 +166,7 @@ pochodzi z pliku bazowego, a tutaj wstawiam tylko unikalną treść.-->
       document.getElementById('detail-vehicle').textContent = getDataAttrOrFallback(button, 'data-vehicle');
   });
 </script>
+<script src="{% static 'js/post_detail.js' %}"></script>
+
 
 {% endblock %}
