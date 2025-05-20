@@ -1,14 +1,22 @@
 {% extends "Fleet/base.html" %}
+{% comment %}
+    Szablon post_form.html służy do wyświetlania formularza tworzenia/edycji posta.
+    Tytuł strony oraz nagłówek są ustawiane dynamicznie poprzez zmienną 'title' przekazywaną z widoku.
+{% endcomment %}
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<h2>{{ title }}</h2>
-<form method="POST">
-    {% csrf_token %}
-<!--renderuje pola formularza-->
-    {{ form.as_p }}
-<!--zapisuje dane-->
-    <input type="submit" value="Zapisz">
-</form>
+<div class="mt-4">
+    <!-- Nagłówek formularza -->
+    <h2>{{ title }}</h2>
+    <!-- Formularz wysyłany metodą POST -->
+    <form method="POST">
+        {% csrf_token %}
+        <!-- Automatycznie renderuje pola formularza (każde pole otoczone przez <p>) -->
+        {{ form.as_p }}
+        <!-- Przycisk do przesłania formularza, stylizowany jako przycisk Bootstrapa -->
+        <button type="submit" class="btn btn-primary">Zapisz</button>
+    </form>
+</div>
 {% endblock %}
