@@ -9,6 +9,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .models import Post
+from django.urls import reverse
 # from .forms import ChatForm
 # from openai import OpenAI
 
@@ -175,6 +176,8 @@ def post_detail_json(request, post_id):
         "end_location": post.end_location,
         "travel_time": str(post.travel_time) if post.travel_time else None,
         "vehicle": post.vehicle,
+        "edit_url": reverse("update_post", args=[post.id]),
+        "delete_id": post.id,  # Potrzebne do usuwania przez JS
     }
     return JsonResponse(data)
 
