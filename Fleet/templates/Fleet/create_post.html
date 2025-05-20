@@ -1,12 +1,24 @@
 {% extends "Fleet/base.html" %}
 {% block title %}Dodaj przejazd{% endblock %}
+
 {% block content %}
-<form method="POST">
+<!-- Formularz do dodawania nowego przejazdu -->
+<form method="POST" class="mt-4">
     {% csrf_token %}
-    Tytuł posta: <br>
-    <input type="text" name="title" required><br>
-    Treść posta: <br>
-    <textarea name="content" rows="10" cols="50" required></textarea><br>
-    <button type="submit">Wprowadź przejazd</button>
+
+    <!-- Pole formularza do wprowadzenia tytułu posta -->
+    <div class="mb-3">
+        <label for="id_title" class="form-label">Tytuł posta:</label>
+        <input type="text" name="title" id="id_title" class="form-control" required>
+    </div>
+
+    <!-- Pole formularza do wprowadzenia treści posta -->
+    <div class="mb-3">
+        <label for="id_content" class="form-label">Treść posta:</label>
+        <textarea name="content" id="id_content" rows="10" cols="50" class="form-control" required></textarea>
+    </div>
+
+    <!-- Przycisk do zatwierdzenia formularza -->
+    <button type="submit" class="btn btn-primary">Wprowadź przejazd</button>
 </form>
 {% endblock %}
