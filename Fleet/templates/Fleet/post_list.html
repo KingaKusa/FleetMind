@@ -1,7 +1,6 @@
 {% extends "Fleet/base.html" %}
-{% block title %}Przejazdy{% endblock %}
-
 {% load static %}
+{% block title %}Przejazdy{% endblock %}
 
 {% block content %}
 <div class="mt-4">
@@ -99,8 +98,10 @@
   </table>
 
   <hr>
-  <!-- Przycisk przekierowujący do widoku tworzenia nowego przejazdu -->
-  <a class="btn btn-outline-primary" href="{% url 'create_post' %}">Dodaj przejazd</a>
+  <!-- Przycisk dodający przejazd – otwiera modal dodawania -->
+  <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createPostModal">
+    Dodaj przejazd
+  </button>
 </div>
 
 <!-- Modal potwierdzenia usunięcia (zakomentowany, gdyż nie jest aktywnie wykorzystywany) -->
@@ -122,6 +123,38 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
       </div>
       -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal ze szczegółami przejazdu -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Nagłówek modala -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailModalLabel">Szczegóły przejazdu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+      </div>
+      <!-- Treść modala -->
+      <div class="modal-body">
+        <!-- Elementy, które zostaną uzupełnione danymi przekazanymi przez atrybuty data-* -->
+        <p><strong>Tytuł:</strong> <span id="detail-title"></span></p>
+        <p><strong>Treść:</strong> <span id="detail-content"></span></p>
+        <p><strong>Data utworzenia:</strong> <span id="detail-create_at"></span></p>
+        <p><strong>Autor:</strong> <span id="detail-author"></span></p>
+        <p><strong>Dystans:</strong> <span id="detail-distance"></span></p>
+        <p><strong>Miejsce początkowe:</strong> <span id="detail-start_location"></span></p>
+        <p><strong>Miejsce końcowe:</strong> <span id="detail-end_location"></span></p>
+        <p><strong>Czas podróży:</strong> <span id="detail-travel_time"></span></p>
+        <p><strong>Pojazd:</strong> <span id="detail-vehicle"></span></p>
+      </div>
+      <!-- Stopka modala ze przyciskami -->
+      <div class="modal-footer">
+        <a href="#" id="editLink" class="btn btn-warning">Edytuj</a>
+        <button id="deleteBtn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Usuń</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+      </div>
     </div>
   </div>
 </div>
