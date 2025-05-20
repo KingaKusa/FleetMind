@@ -81,10 +81,10 @@ pochodzi z pliku bazowego, a tutaj wstawiam tylko unikalną treść.-->
             <td>
 <!--AKCJE: EDYTUJ, USUŃ, SZCZEGÓŁY-->
 <!--Link do widoku edycji posta. Odsyła do strony formularza edycji posta.-->
-                <a class="btn btn-sm btn-warning" href="{% url 'update_post' post.id %}">Edytuj</a>
+<!--                <a class="btn btn-sm btn-warning" href="{% url 'update_post' post.id %}">Edytuj</a>-->
 <!--Otwiera modal z potwierdzeniem usunięcia.-->
-                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                        data-id="{{ post.id }}" data-title="{{ post.title }}">Usuń</button>
+<!--                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"-->
+<!--                        data-id="{{ post.id }}" data-title="{{ post.title }}">Usuń</button>-->
 <!--Otwiera modal ze szczegółami posta – dane są przekazywane jako data-*.-->
                 <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailModal"
                         data-title="{{ post.title }}"
