@@ -1,29 +1,37 @@
 {% extends "Fleet/base.html" %}
+{% load static %}
 {% block title %}Panel użytkownika{% endblock %}
 
+{# W tym szablonie nie nadpisujemy bloku sidebar, dlatego domyślnie wyświetli się panel boczny zdefiniowany w base.html #}
+
 {% block content %}
-<h2>Cześć, {{ user.username }}!</h2>
+<div class="container mt-4">
+    <!-- Powitanie użytkownika oraz informacje o koncie -->
+    <h2>Cześć, {{ user.username }}!</h2>
+    <p>Email: {{ user.email }}</p>
 
-<p>Email: {{ user.email }}</p>
+    <!-- Lista przejazdów użytkownika -->
+    <h3>Twoje przejazdy:</h3>
+    {% if posts %}
+        <ul>
+            {% for post in posts %}
+            <li>
+                <strong>{{ post.title }}</strong> - {{ post.create_at }}
+                <p>{{ post.content }}</p>
+                <!-- Linki do edycji i usuwania -->
+                <a href="{% url 'update_post' post.id %}">Edytuj</a> |
+                <a href="{% url 'delete_post' post.id %}">Usuń</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nie dodano żadnych przejazdów.</p>
+    {% endif %}
 
-<h3>Twoje przejazdy:</h3>
-{% if posts %}
-    <ul>
-        {% for post in posts %}
-            <li><strong>{{ post.title }}</strong> - {{ post.create_at }}</li>
-            <p>{{ post.content }}</p>
-            <a href="{% url 'update_post' post.id %}">Edytuj</a> |
-            <a href="{% url 'delete_post' post.id %}">Usuń</a>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Nie dodano żadnych przejazdów.</p>
-{% endif %}
-
-<form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Wyloguj się</button>
-</form>
-
+    <!-- Formularz wylogowania -->
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Wyloguj się</button>
+    </form>
+</div>
 {% endblock %}
-
