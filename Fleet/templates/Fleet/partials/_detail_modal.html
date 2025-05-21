@@ -23,8 +23,13 @@
       </div>
       <!-- Stopka modala z przyciskami akcji -->
       <div class="modal-footer">
-        <!-- Przycisk "Edytuj" – teraz dynamicznie wypełniany href w JavaScript -->
-        <a href="#" id="editLink" class="btn btn-warning">Edytuj</a>
+        <!-- 🔹 Zmieniamy przycisk "Edytuj", aby otwierał modal edycji -->
+        <button id="editLink" class="btn btn-warning"
+                data-bs-toggle="modal"
+                data-bs-target="#editModal">
+          Edytuj
+        </button>
+
         <!-- Przycisk "Usuń" – dodajemy data-id, który będzie używany w skrypcie -->
         <button id="deleteBtn" class="btn btn-danger" data-id="">Usuń</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>

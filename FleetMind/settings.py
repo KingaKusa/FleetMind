@@ -131,7 +131,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # STATICFILES_DIRS – to lista fodlerów, w których Django szuka plików statycznych podczas developmentu.
 # (np. folder "static" w głównym katalogu projektu)- zazwyczaj wskazuje się na folder 'static' w katalogu głównym projektu
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / 'Fleet/static',
 ]
 
 # Domyślny typ pola klucza głównego

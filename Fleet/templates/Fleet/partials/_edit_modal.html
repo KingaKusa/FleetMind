@@ -1,0 +1,59 @@
+<!-- _edit_modal.html -->
+<!-- Modal edycji przejazdu -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Nagłówek modala -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edytuj przejazd</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+      </div>
+      <!-- Treść modala – formularz edycji -->
+      <div class="modal-body">
+        <form id="editPostForm" method="POST" action="">
+          {% csrf_token %}
+          <!-- Pole tytułu -->
+          <div class="mb-3">
+            <label for="edit-title" class="form-label">Tytuł:</label>
+            <input type="text" name="title" id="edit-title" class="form-control" required>
+          </div>
+          <!-- Pole treści -->
+          <div class="mb-3">
+            <label for="edit-content" class="form-label">Treść:</label>
+            <textarea name="content" id="edit-content" class="form-control" rows="3" required></textarea>
+          </div>
+          <!-- Pole dystansu -->
+          <div class="mb-3">
+            <label for="edit-distance" class="form-label">Dystans (km):</label>
+            <input type="number" name="distance" id="edit-distance" class="form-control">
+          </div>
+          <!-- Pole miejsca początkowego -->
+          <div class="mb-3">
+            <label for="edit-start_location" class="form-label">Miejsce początkowe:</label>
+            <input type="text" name="start_location" id="edit-start_location" class="form-control">
+          </div>
+          <!-- Pole miejsca końcowego -->
+          <div class="mb-3">
+            <label for="edit-end_location" class="form-label">Miejsce końcowe:</label>
+            <input type="text" name="end_location" id="edit-end_location" class="form-control">
+          </div>
+          <!-- Pole czasu podróży -->
+          <div class="mb-3">
+            <label for="edit-travel_time" class="form-label">Czas podróży (hh:mm:ss):</label>
+            <input type="text" name="travel_time" id="edit-travel_time" class="form-control">
+          </div>
+          <!-- Pole pojazdu -->
+          <div class="mb-3">
+            <label for="edit-vehicle" class="form-label">Pojazd:</label>
+            <input type="text" name="vehicle" id="edit-vehicle" class="form-control">
+          </div>
+          <!-- Stopka modala z przyciskami -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+            <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
