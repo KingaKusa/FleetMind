@@ -2,40 +2,25 @@
 <html lang="pl">
 {% load static %}
   <head>
-    <!-- Ustawienia podstawowych meta tagów -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Załadowanie arkusza Bootstrap dla stylizacji -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Załadowanie DataTables dla interaktywnej tabeli przejazdów -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
-
-    <!-- Własny arkusz stylów -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
-    <!-- Bootstrap Icons dla dodatkowych ikon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-
-    <!-- Dynamiczny tytuł strony -->
     <title>{% block title %}FleetMindApp{% endblock %}</title>
   </head>
   <body>
-    <!-- Nawigacja główna -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <!-- Logo/brand: kliknięcie przenosi do strony głównej -->
         <a class="navbar-brand" href="{% url 'post_list' %}">FleetMind</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
                 aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- Elementy nawigacji -->
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <!-- Bezpośredni link do „Rejestru przejazdów” -->
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'post_list' %}">Rejestr przejazdów</a>
             </li>
@@ -44,35 +29,28 @@
       </div>
     </nav>
 
-    <!-- Główny kontener -->
     <div class="container d-flex mt-4">
-      <!-- Główna sekcja na treść -->
       <div class="main-content flex-grow-1">
         {% block content %}
+        {% include "Fleet/post_list.html" %}  <!-- Poprawione wywołanie -->
         {% endblock %}
       </div>
-
-      <!-- Panel użytkownika -->
       {% block sidebar %}
       <div class="user-panel ms-3 p-3 bg-light border rounded" style="width: 250px;">
         {% if user.is_authenticated %}
-          <!-- Wyświetlanie nazwy użytkownika pobranej z profilu -->
           <h3>Panel użytkownika</h3>
           <p>Witaj, {{ user.profile.display_name }}!</p>
-          <!-- Formularz wylogowania -->
           <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger btn-sm">Wyloguj się</button>
           </form>
         {% else %}
-          <!-- Jeśli użytkownik nie jest zalogowany, wyświetlamy przycisk do logowania -->
           <p><a href="{% url 'login' %}" class="btn btn-success">Zaloguj się</a></p>
         {% endif %}
       </div>
       {% endblock %}
     </div>
 
-    <!-- Skrypty JavaScript: Bootstrap, jQuery oraz DataTables -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -6,8 +6,6 @@ Każda ścieżka związana jest z konkretnym widokiem, który odpowiada za obsł
 from django.urls import path
 # Importujemy widoki, które będą obsługiwać poszczególne ścieżki URL.
 from .views import (
-    hello_users,
-    hello_name,
     post_list,
     create_post,
     update_post,
@@ -23,15 +21,8 @@ from django.contrib.auth.views import LogoutView, LoginView
 
 urlpatterns = [
     # Strona startowa (HOME) jako domyślny adres
-    # Dwie ścieżki – pusta ('') i 'home/' – kierują do widoku home dzięki czemu użytkownik trafia tam po przejściu na główny adres witryny.
     path('', home, name='home'),
     path('home/', home, name='home'),
-    # Ścieżka demonstracyjna: wyświetlanie listy użytkowników ("hello_users").
-    path('hello/', hello_users, name='hello_users'),
-
-    # Ścieżka powitalna z dynamicznie przekazywaną nazwą.
-    # Dodano nazwę "hello_name" dla spójności (możesz usunąć, jeśli nie jest potrzebna).
-    path('hello/<str:name>/', hello_name, name='hello_name'),
 
     # Rejestracja nowych użytkowników.
     path('register/', register, name='register'),
@@ -48,9 +39,6 @@ urlpatterns = [
     # Widok z listą postów zalogowanego użytkownika, z możliwością sortowania.
     path('user_posts/', user_posts, name='user_posts'),
 
-    # Przykładowe, zakomentowane ścieżki – możesz je odkomentować, kiedy będą potrzebne.
-    # path('table/', table, name='table'),
-
     # Widok listy wszystkich postów (z możliwością sortowania poprzez parametry GET).
     path('posts/', post_list, name='post_list'),
 
@@ -65,7 +53,5 @@ urlpatterns = [
 
     # Widok zwracający szczegóły posta w formacie JSON – przydatny przy dynamicznych operacjach na poście.
     path('posts/detail/<int:post_id>/', post_detail_json, name='post_detail_json'),
-
-    # Zakomentowana ścieżka do widoku "chat" – na przyszłość, kiedy chcesz ją wdrożyć.
-    # path('chat/', chat, name='chat'),
 ]
+
