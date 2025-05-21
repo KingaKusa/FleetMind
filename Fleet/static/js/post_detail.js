@@ -9,10 +9,10 @@ if (detailModal) {
     detailModal.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
 
-        document.getElementById('detail-title').textContent = getDataAttrOrFallback(button, 'data-title');
-        document.getElementById('detail-content').textContent = getDataAttrOrFallback(button, 'data-content');
-        document.getElementById('detail-create_at').textContent = getDataAttrOrFallback(button, 'data-create_at');
-        document.getElementById('detail-author').textContent = getDataAttrOrFallback(button, 'data-author');
+        document.getElementById('detail-title').textContent = button.getAttribute('data-title');
+        document.getElementById('detail-content').textContent = button.getAttribute('data-content');
+        document.getElementById('detail-create_at').textContent = button.getAttribute('data-create_at');
+        document.getElementById('detail-author').textContent = button.getAttribute('data-author');
 
         var editLink = document.getElementById('editLink');
         if (editLink) {
@@ -21,7 +21,7 @@ if (detailModal) {
     });
 }
 
-// 🔹 Obsługa zamykania modala "Szczegóły" (naprawa blokady ekranu)
+// 🔹 Obsługa zamykania modala "Szczegóły"
 $('#detailModal').on('hidden.bs.modal', function () {
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
