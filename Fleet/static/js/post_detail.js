@@ -46,5 +46,17 @@ if (detailModal) {
         document.getElementById('detail-end_location').textContent    = getDataAttrOrFallback(button, 'data-end_location');
         document.getElementById('detail-travel_time').textContent     = getDataAttrOrFallback(button, 'data-travel_time');
         document.getElementById('detail-vehicle').textContent         = getDataAttrOrFallback(button, 'data-vehicle');
+
+        // Ustawienie dynamicznego linku dla przycisku "Edytuj"
+        var editLink = document.getElementById('editLink');
+        if (editLink) {
+            editLink.setAttribute('href', `/posts/update/${button.getAttribute('data-id')}/`);
+        }
+
+        // Przekazanie ID przejazdu do przycisku "Usuń"
+        var deleteBtn = document.getElementById('deleteBtn');
+        if (deleteBtn) {
+            deleteBtn.setAttribute('data-id', button.getAttribute('data-id'));
+        }
     });
 }

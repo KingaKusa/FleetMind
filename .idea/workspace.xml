@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="11.4">
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="11.5">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fleet/static/js/post_detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/static/js/post_detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/post_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/partials/_detail_modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/partials/_detail_modal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,14 +114,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743253172273</updated>
-    </task>
-    <task id="LOCAL-00016" summary="4.1">
-      <option name="closed" value="true" />
-      <created>1747510712675</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1747510712675</updated>
     </task>
     <task id="LOCAL-00017" summary="5.1">
       <option name="closed" value="true" />
@@ -505,7 +499,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747775780689</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="11.5">
+      <option name="closed" value="true" />
+      <created>1747776165366</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1747776165367</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -520,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="9.6" />
     <MESSAGE value="9.7" />
     <MESSAGE value="9.8" />
     <MESSAGE value="10.0" />
@@ -545,6 +546,7 @@
     <MESSAGE value="11.2" />
     <MESSAGE value="11.3" />
     <MESSAGE value="11.4" />
-    <option name="LAST_COMMIT_MESSAGE" value="11.4" />
+    <MESSAGE value="11.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="11.5" />
   </component>
 </project>
