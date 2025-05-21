@@ -27,3 +27,80 @@
     <!-- Przycisk wysyłający formularz sortowania -->
     <button type="submit" class="btn btn-primary btn-sm">Sortuj</button>
   </form>
+
+  <!-- Tabela przejazdów -->
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Lp.</th>
+        <th>Nazwa</th>
+        <th>Treść</th>
+        <th>Data</th>
+        <th>Akcja</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+      <tr id="post-{{ post.id }}">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ post.title }}</td>
+        <td>{{ post.content }}</td>
+        <td>{{ post.create_at }}</td>
+        <td>
+          <!-- Przycisk otwierający modal ze szczegółami -->
+          <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailModal"
+                  data-id="{{ post.id }}"
+                  data-title="{{ post.title }}"
+                  data-content="{{ post.content }}"
+                  data-create_at="{{ post.create_at }}"
+                  data-author="{{ post.author.username }}"
+                  data-distance="{{ post.distance }}"
+                  data-start_location="{{ post.start_location }}"
+                  data-end_location="{{ post.end_location }}"
+                  data-travel_time="{{ post.travel_time }}"
+                  data-vehicle="{{ post.vehicle }}">
+            Szczegóły
+          </button>
+          <!-- Przycisk otwierający modal edycji -->
+          <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editModal"
+                  data-id="{{ post.id }}"
+                  data-title="{{ post.title }}"
+                  data-content="{{ post.content }}"
+                  data-distance="{{ post.distance }}"
+                  data-start_location="{{ post.start_location }}"
+                  data-end_location="{{ post.end_location }}"
+                  data-travel_time="{{ post.travel_time }}"
+                  data-vehicle="{{ post.vehicle }}">
+            Edytuj
+          </button>
+          <!-- Przycisk otwierający modal usuwania -->
+          <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                  data-id="{{ post.id }}"
+                  data-title="{{ post.title }}">
+            Usuń
+          </button>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5" class="text-center">Brak przejazdów.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <hr>
+  <!-- Przycisk dodawania przejazdu -->
+  <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createPostModal">
+    Dodaj przejazd
+  </button>
+
+  <!-- Włączenie partiali zawierających kody modalów -->
+  {% include "Fleet/partials/_create_post_modal.html" %}
+  {% include "Fleet/partials/_detail_modal.html" %}
+  {% include "Fleet/partials/_edit_modal.html" %}
+  {% include "Fleet/partials/_delete_modal.html" %}
+
+  <!-- Ładowanie zewnętrznego pliku JavaScript rozszerzającego funkcjonalność modali -->
+  <script src="{% static 'js/post_detail.js' %}"></script>
+{% endblock %}
