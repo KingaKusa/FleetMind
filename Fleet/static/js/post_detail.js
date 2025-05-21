@@ -1,35 +1,39 @@
 /*
   Plik post_detail.js
   --------------------
-  Obsługuje dynamiczne wypełnianie modali "Szczegóły" i "Edycja".
+  Obsługuje dynamiczne wypełnianie modali "Szczegóły", "Edycja" i "Usuń".
   - Po kliknięciu "Szczegóły" wypełnia dane w detailModal.
   - Po kliknięciu "Edytuj" zamyka "Szczegóły" i otwiera "Edycję".
+  - Po kliknięciu "Usuń" otwiera modal potwierdzenia usunięcia.
   - Dynamicznie ustawia akcję formularza edycji.
 */
 
 /**
- * Pobiera wartość z atrybutu data-* przycisku
+ * Pobiera wartość z atrybutu data-* przycisku.
+ * Jeśli atrybut nie istnieje, zwraca wartość domyślną.
+ *
  * @param {HTMLElement} button - Przycisk z danymi
  * @param {string} attr - Nazwa atrybutu
  * @param {string} [fallback="Brak danych"] - Wartość domyślna
  * @returns {string} - Pobraną wartość lub fallback
  */
 function getDataAttrOrFallback(button, attr, fallback = "Brak danych") {
-    const val = button.getAttribute(attr);
-    return val ? val : fallback;
+    return button.getAttribute(attr) || fallback;
 }
 
-// Pobieramy referencje do modali
+// 🔹 Pobieramy referencje do modali
 var detailModal = document.getElementById('detailModal');
 var editModal = document.getElementById('editModal');
-var editLink = document.getElementById('editLink');
+var deleteModal = document.getElementById('deleteModal');
+var deleteButton = document.getElementById('confirmDelete');
+var postIdToDelete = null;
 
-// Sprawdzamy, czy modal szczegółów istnieje
+// 🔹 Obsługa modala "Szczegóły"
 if (detailModal) {
     detailModal.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
 
-        // Wypełnienie modala szczegółów
+        // Wypełnianie wartości modala szczegółów przejazdu
         document.getElementById('detail-title').textContent = getDataAttrOrFallback(button, 'data-title');
         document.getElementById('detail-content').textContent = getDataAttrOrFallback(button, 'data-content');
         document.getElementById('detail-create_at').textContent = getDataAttrOrFallback(button, 'data-create_at');
@@ -40,44 +44,55 @@ if (detailModal) {
         document.getElementById('detail-travel_time').textContent = getDataAttrOrFallback(button, 'data-travel_time');
         document.getElementById('detail-vehicle').textContent = getDataAttrOrFallback(button, 'data-vehicle');
 
-        // Przekazujemy ID przejazdu do przycisku "Edytuj"
+        // 🔹 Obsługa kliknięcia "Edytuj" → zamykamy modal szczegółów, otwieramy edycję
+        var editLink = document.getElementById('editLink');
         if (editLink) {
             editLink.setAttribute('data-id', button.getAttribute('data-id'));
+            editLink.addEventListener('click', function () {
+                var modalInstance = bootstrap.Modal.getInstance(detailModal);
+                modalInstance.hide();
+
+                var editModalInstance = new bootstrap.Modal(editModal);
+                editModalInstance.show();
+            });
         }
     });
 }
 
-// 🔹 Zamykamy modal szczegółów i otwieramy edycję
-if (editLink) {
-    editLink.addEventListener('click', function () {
-        var modalInstance = bootstrap.Modal.getInstance(detailModal);
-        if (modalInstance) {
-            modalInstance.hide(); // Zamykamy "Szczegóły"
-        }
+// 🔹 Obsługa modala "Usuń"
+if (deleteModal) {
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        postIdToDelete = button.getAttribute('data-id');
 
-        var editModalInstance = new bootstrap.Modal(editModal);
-        editModalInstance.show(); // Otwieramy "Edycja"
+        // Wstawienie tytułu do modala
+        var modalTitle = deleteModal.querySelector('#postTitle');
+        modalTitle.textContent = getDataAttrOrFallback(button, 'data-title');
     });
-}
 
-// Sprawdzamy, czy modal edycji istnieje
-if (editModal) {
-    editModal.addEventListener('show.bs.modal', function (event) {
-        var button = document.querySelector(`[data-id="${editLink.getAttribute('data-id')}"]`);
+    // Pobieranie tokena CSRF do żądania POST
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-        // Wypełnienie modala edycji
-        document.getElementById('edit-title').value = getDataAttrOrFallback(button, 'data-title');
-        document.getElementById('edit-content').value = getDataAttrOrFallback(button, 'data-content');
-        document.getElementById('edit-distance').value = getDataAttrOrFallback(button, 'data-distance');
-        document.getElementById('edit-start_location').value = getDataAttrOrFallback(button, 'data-start_location');
-        document.getElementById('edit-end_location').value = getDataAttrOrFallback(button, 'data-end_location');
-        document.getElementById('edit-travel_time').value = getDataAttrOrFallback(button, 'data-travel_time');
-        document.getElementById('edit-vehicle').value = getDataAttrOrFallback(button, 'data-vehicle');
-
-        // Ustawienie dynamicznej akcji formularza
-        var editForm = document.getElementById('editPostForm');
-        if (editForm) {
-            editForm.setAttribute('action', `/posts/update/${editLink.getAttribute('data-id')}/`);
-        }
+    // Obsługa przycisku potwierdzającego usunięcie
+    deleteButton.addEventListener('click', function () {
+        fetch(`/posts/delete/${postIdToDelete}/`, {
+            method: "POST", // 🔹 Zmieniono z DELETE na POST
+            headers: {
+                "X-CSRFToken": csrftoken,
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ post_id: postIdToDelete }) // 🔹 Wysyłamy ID w treści żądania
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById(`post-${postIdToDelete}`).remove();
+                var modalInstance = bootstrap.Modal.getInstance(deleteModal);
+                modalInstance.hide();
+            } else {
+                alert("Błąd: Nie udało się usunąć przejazdu!");
+            }
+        }).catch(error => {
+            alert("Błąd połączenia z serwerem!");
+        });
     });
 }
