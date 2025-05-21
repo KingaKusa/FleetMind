@@ -4,50 +4,37 @@
 
 {% block content %}
 <div class="mt-4">
-  <!-- Nagłówek strony -->
-  <h2 class="mb-3">Przejazdy</h2>
+  <h2 class="mb-3">Rejestr przejazdów</h2>
 
-  <!-- Formularz sortowania przejazdów -->
-  <form method="get" class="mb-3 d-flex align-items-center gap-2">
-    <label for="sort">Sortuj po:</label>
-    <!-- Pole wyboru kryterium sortowania -->
-    <select name="sort" id="sort" class="form-select form-select-sm" style="width: auto;">
-      <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Nazwa</option>
-      <option value="content" {% if current_sort == 'content' %}selected{% endif %}>Treść</option>
-      <option value="create_at" {% if current_sort == 'create_at' %}selected{% endif %}>Data</option>
-    </select>
-
-    <label for="direction">Kierunek:</label>
-    <!-- Pole wyboru kierunku sortowania -->
-    <select name="direction" id="direction" class="form-select form-select-sm" style="width: auto;">
-      <option value="asc" {% if current_direction == 'asc' %}selected{% endif %}>Rosnąco</option>
-      <option value="desc" {% if current_direction == 'desc' %}selected{% endif %}>Malejąco</option>
-    </select>
-
-    <!-- Przycisk wysyłający formularz sortowania -->
-    <button type="submit" class="btn btn-primary btn-sm">Sortuj</button>
-  </form>
+  <!-- Lista rozwijana do dynamicznego sortowania -->
+  <label for="sortSelect">Sortuj po:</label>
+  <select id="sortSelect" class="form-select form-select-sm" style="width: auto;">
+    <option value="title">Nazwa</option>
+    <option value="create_at">Data</option>
+    <option value="distance">Dystans</option>
+  </select>
 
   <!-- Tabela przejazdów -->
-  <table class="table table-hover">
+  <table id="ridesTable" class="table table-striped table-hover">
     <thead>
       <tr>
         <th>Lp.</th>
         <th>Nazwa</th>
         <th>Treść</th>
         <th>Data</th>
+        <th>Autor</th>
         <th>Akcja</th>
       </tr>
     </thead>
     <tbody>
       {% for post in posts %}
-      <tr id="post-{{ post.id }}">
+      <tr id="post-{{ post.id }}" class="{% if post.author == request.user %}table-warning{% endif %}">
         <td>{{ forloop.counter }}</td>
         <td>{{ post.title }}</td>
         <td>{{ post.content }}</td>
-        <td>{{ post.create_at }}</td>
+        <td>{{ post.create_at|date:"d.m.Y H:i" }}</td>
+        <td>{% if post.author == request.user %} Ty {% else %} {{ post.author.username }} {% endif %}</td>
         <td>
-          <!-- Przycisk otwierający modal ze szczegółami -->
           <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailModal"
                   data-id="{{ post.id }}"
                   data-title="{{ post.title }}"
@@ -61,46 +48,42 @@
                   data-vehicle="{{ post.vehicle }}">
             Szczegóły
           </button>
-          <!-- Przycisk otwierający modal edycji -->
-          <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editModal"
-                  data-id="{{ post.id }}"
-                  data-title="{{ post.title }}"
-                  data-content="{{ post.content }}"
-                  data-distance="{{ post.distance }}"
-                  data-start_location="{{ post.start_location }}"
-                  data-end_location="{{ post.end_location }}"
-                  data-travel_time="{{ post.travel_time }}"
-                  data-vehicle="{{ post.vehicle }}">
-            Edytuj
-          </button>
-          <!-- Przycisk otwierający modal usuwania -->
-          <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                  data-id="{{ post.id }}"
-                  data-title="{{ post.title }}">
-            Usuń
-          </button>
         </td>
       </tr>
       {% empty %}
       <tr>
-        <td colspan="5" class="text-center">Brak przejazdów.</td>
+        <td colspan="6" class="text-center">Brak przejazdów.</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 
   <hr>
-  <!-- Przycisk dodawania przejazdu -->
   <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createPostModal">
     Dodaj przejazd
   </button>
 
-  <!-- Włączenie partiali zawierających kody modalów -->
   {% include "Fleet/partials/_create_post_modal.html" %}
   {% include "Fleet/partials/_detail_modal.html" %}
-  {% include "Fleet/partials/_edit_modal.html" %}
-  {% include "Fleet/partials/_delete_modal.html" %}
+</div>
 
-  <!-- Ładowanie zewnętrznego pliku JavaScript rozszerzającego funkcjonalność modali -->
-  <script src="{% static 'js/post_detail.js' %}"></script>
+<!-- DataTables: Interaktywna tabela -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#ridesTable').DataTable({
+      paging: true,
+      searching: true,
+      info: false,
+      lengthChange: false
+    });
+
+    // Obsługa dynamicznego sortowania
+    $('#sortSelect').on('change', function () {
+      var sortColumn = $(this).val();
+      $('#ridesTable').DataTable().order([[sortColumn, 'asc']]).draw();
+    });
+  });
+</script>
+
 {% endblock %}
