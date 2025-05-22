@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from Fleet.forms import RegisterForm
-from ..models import Post, Profile  # Dodajemy import `Profile`, aby zapisywać Nick
+from ..models import Profile  # Usunięto import Post, bo nie wyświetlamy już przejazdów
 
 
 class CustomLoginView(LoginView):
@@ -48,27 +48,27 @@ def register(request):
 
     return render(request, "Fleet/Auth/register.html", {"form": form})
 
+
 @login_required
 def user_panel(request):
     """
-    Panel użytkownika – wyświetla aktualnego użytkownika oraz jego posty.
-    Pozwala użytkownikowi zmieniać swój Nick (`display_name`).
+    Panel użytkownika – wyświetla aktualnego użytkownika oraz pozwala na edycję jego danych.
     """
 
     # Pobieramy lub tworzymy profil użytkownika
     profile, created = Profile.objects.get_or_create(user=request.user)
 
-    # Obsługa formularza zmiany Nicku
+    # Obsługa formularza zmiany danych użytkownika
     if request.method == "POST":
-        new_display_name = request.POST.get("display_name", "").strip()  # Pobieramy nową wartość Nicku z formularza
+        profile.display_name = request.POST.get("display_name", profile.display_name)
+        request.user.email = request.POST.get("email", request.user.email)
 
-        if new_display_name:  # Sprawdzamy, czy użytkownik wpisał nową nazwę
-            profile.display_name = new_display_name  # Aktualizujemy Nick w obiekcie Profile
-            profile.save()  # Zapisujemy zmiany w bazie danych
+        new_password = request.POST.get("password")
+        if new_password:  # Jeśli wpisano nowe hasło, aktualizujemy je
+            request.user.set_password(new_password)
 
-    # Pobieramy wszystkie posty dodane przez aktualnie zalogowanego użytkownika
-    user_posts = Post.objects.filter(author=request.user)
+        profile.save()
+        request.user.save()
 
-    # Przekazujemy dane do szablonu HTML `user_panel.html`
-    return render(request, "Fleet/Auth/user_panel.html", {"user": request.user, "profile": profile, "posts": user_posts})
-
+    # Przekazujemy dane do szablonu `user_panel.html`, wraz z odwołaniem do `_edit_user_modal.html`
+    return render(request, "Fleet/Auth/user_panel.html", {"user": request.user, "profile": profile})
