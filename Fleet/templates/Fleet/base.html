@@ -39,7 +39,7 @@
       <div class="user-panel ms-3 p-3 bg-light border rounded" style="width: 250px;">
         {% if user.is_authenticated %}
           <h3>Panel użytkownika</h3>
-          <p>Witaj, {{ user.profile.display_name }}!</p>
+          <p>Witaj, {{ user.profile.display_name|default:"Nie ustawiono nicku" }}!</p>
           <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger btn-sm">Wyloguj się</button>
