@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="13.1">
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="13.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/chat.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/hello_name.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/hello_users.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/post_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fleet/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fleet/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,20 +47,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.manage.executor": "Run",
-    "Python.models.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/kinga/PycharmProjects/FleetMind",
-    "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.manage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.models.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kinga/PycharmProjects/FleetMind&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\vdi-student\PycharmProjects\FleetMind" />
@@ -119,14 +112,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743253172273</updated>
-    </task>
-    <task id="LOCAL-00026" summary="6.1">
-      <option name="closed" value="true" />
-      <created>1747569473826</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1747569473826</updated>
     </task>
     <task id="LOCAL-00027" summary="6.2">
       <option name="closed" value="true" />
@@ -512,7 +497,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747847257124</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="13.2">
+      <option name="closed" value="true" />
+      <created>1747857082921</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1747857082921</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -527,7 +520,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="10.7" />
     <MESSAGE value="10.8" />
     <MESSAGE value="10.9" />
     <MESSAGE value="10.10" />
@@ -552,6 +544,7 @@
     <MESSAGE value="12.6" />
     <MESSAGE value="13.0" />
     <MESSAGE value="13.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="13.1" />
+    <MESSAGE value="13.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="13.2" />
   </component>
 </project>

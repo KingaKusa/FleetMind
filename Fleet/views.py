@@ -8,7 +8,8 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
+from django.contrib.auth.views import LoginView
+from django.urls import reverse, reverse_lazy
 
 from .forms import PostForm, RegisterForm
 from .models import Post
@@ -25,6 +26,15 @@ def home(request):
     """
     return render(request, "Fleet/home.html")
 
+
+class CustomLoginView(LoginView):
+    """
+    Niestandardowy widok logowania użytkownika.
+    Możesz tutaj dostosować wygląd strony logowania lub jej zachowanie.
+    """
+    template_name = "Fleet/Auth/login.html"  # Upewnij się, że ten plik istnieje
+    redirect_authenticated_user = True
+    success_url = reverse_lazy("post_list")  # Przekierowanie po zalogowaniu
 
 @login_required
 def post_list(request):
