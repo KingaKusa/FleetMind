@@ -40,6 +40,7 @@
         {% if user.is_authenticated %}
           <h3>Panel użytkownika</h3>
           <p>Witaj, {{ user.profile.display_name|default:"Nie ustawiono nicku" }}!</p>
+          <a href="{% url 'user_panel' %}" class="btn btn-primary btn-sm mt-2">Przejdź do panelu użytkownika</a>  <!-- Nowy przycisk! -->
           <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger btn-sm">Wyloguj się</button>
