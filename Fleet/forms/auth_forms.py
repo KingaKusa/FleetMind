@@ -48,15 +48,15 @@ class RegisterForm(forms.ModelForm):
         password2 = cleaned_data.get("password2")
 
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Hasła muszą być identyczne!")
+            self.add_error("password2", "Hasła muszą być identyczne!")
 
         username = cleaned_data.get("username")
         if User.objects.filter(username=username).exists():
-            raise forms.ValidationError("Nazwa użytkownika już istnieje. Wybierz inną.")
+            self.add_error("username", "Nazwa użytkownika już istnieje. Wybierz inną.")
 
         email = cleaned_data.get("email")
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError("Użytkownik z tym adresem e-mail już istnieje.")
+            self.add_error("email", "Użytkownik z tym adresem e-mail już istnieje.")
 
         return cleaned_data
 
@@ -86,10 +86,10 @@ class UserUpdateForm(forms.ModelForm):
 
         if password1 or password2:  # Jeśli jedno z pól hasła jest wypełnione
             if password1 != password2:
-                raise forms.ValidationError("Hasła muszą być identyczne!")
+                self.add_error("password2", "Hasła muszą być identyczne!")
 
         display_name = cleaned_data.get("display_name")
         if display_name and Profile.objects.filter(display_name=display_name).exists():
-            raise forms.ValidationError("Ten Nick jest już zajęty. Wybierz inny.")
+            self.add_error("display_name", "Ten Nick jest już zajęty. Wybierz inny.")
 
         return cleaned_data

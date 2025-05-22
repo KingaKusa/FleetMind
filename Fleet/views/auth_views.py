@@ -8,8 +8,8 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from Fleet.forms import RegisterForm
-from ..models import Profile  # Usunięto import Post, bo nie wyświetlamy już przejazdów
+from Fleet.forms import RegisterForm, UserUpdateForm
+from ..models import Profile
 
 
 class CustomLoginView(LoginView):
@@ -52,23 +52,29 @@ def register(request):
 @login_required
 def user_panel(request):
     """
-    Panel użytkownika – wyświetla aktualnego użytkownika oraz pozwala na edycję jego danych.
+    Panel użytkownika – pozwala edytować Nick, e-mail oraz hasło.
+    Jeśli wystąpią błędy, modal pozostanie otwarty zamiast odświeżyć stronę.
     """
 
-    # Pobieramy lub tworzymy profil użytkownika
     profile, created = Profile.objects.get_or_create(user=request.user)
+    form = UserUpdateForm(instance=request.user, initial={"display_name": profile.display_name})
+    success_message = None  # Zmienna przechowująca komunikat o powodzeniu zmian
 
-    # Obsługa formularza zmiany danych użytkownika
     if request.method == "POST":
-        profile.display_name = request.POST.get("display_name", profile.display_name)
-        request.user.email = request.POST.get("email", request.user.email)
+        form = UserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            request.user.email = form.cleaned_data["email"]
+            profile.display_name = form.cleaned_data["display_name"]
+            profile.save()
 
-        new_password = request.POST.get("password")
-        if new_password:  # Jeśli wpisano nowe hasło, aktualizujemy je
-            request.user.set_password(new_password)
+            new_password = form.cleaned_data.get("password1")
+            if new_password:  # Sprawdzamy, czy nowe hasło zostało podane
+                request.user.set_password(new_password)
 
-        profile.save()
-        request.user.save()
+            request.user.save()
+            success_message = "Dane zostały pomyślnie zmienione!"  # Komunikat o powodzeniu zmian
 
-    # Przekazujemy dane do szablonu `user_panel.html`, wraz z odwołaniem do `_edit_user_modal.html`
-    return render(request, "Fleet/Auth/user_panel.html", {"user": request.user, "profile": profile})
+        # Jeśli są błędy, modal pozostanie otwarty, a użytkownik zobaczy komunikaty
+        return render(request, "Fleet/Auth/user_panel.html", {"user": request.user, "profile": profile, "form": form, "success_message": success_message})
+
+    return render(request, "Fleet/Auth/user_panel.html", {"user": request.user, "profile": profile, "form": form})
