@@ -1,6 +1,6 @@
 """
 Plik models.py – Definicja modeli dla aplikacji FleetMind.
-Zawiera definicję modeli Post oraz Task.
+Zawiera definicję modelu Post, który reprezentuje wpisy użytkowników.
 """
 
 from django.db import models
@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
     """
-    Model Post reprezentuje post (odpowiednik wiadomości lub wpisu).
+    Model Post reprezentuje wpis użytkownika.
     Zawiera informacje takie jak: tytuł, treść, data utworzenia,
     autor oraz dodatkowe dane związane z podróżą (np. dystans, lokalizacje, czas podróży, pojazd).
     """
@@ -61,31 +61,5 @@ class Post(models.Model):
     def __str__(self):
         """
         Zwraca reprezentację tekstową obiektu jako tytuł posta.
-        """
-        return self.title
-
-
-class Task(models.Model):
-    """
-    Model Task reprezentuje zadanie, wykorzystywane m.in. w widoku demonstracyjnym hello_users.
-    Zadania zawierają tytuł, opis oraz datę utworzenia.
-    """
-    title = models.CharField(
-        max_length=200,
-        help_text="Tytuł zadania (maks. 200 znaków)"
-    )
-    description = models.TextField(
-        blank=True,
-        null=True,
-        help_text="Opis zadania; pole opcjonalne"
-    )
-    create_at = models.DateTimeField(
-        auto_now_add=True,
-        help_text="Data i czas utworzenia zadania (ustawiane automatycznie)"
-    )
-
-    def __str__(self):
-        """
-        Zwraca reprezentację tekstową zadania jako tytuł.
         """
         return self.title
