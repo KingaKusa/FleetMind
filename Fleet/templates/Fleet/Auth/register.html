@@ -28,6 +28,7 @@
         <form method="POST">
             {% csrf_token %}
 
+            {# Pole do wpisania nazwy użytkownika (unikatowy identyfikator) #}
             <div class="mb-3 w-100">
                 <label for="username" class="form-label">Nazwa użytkownika</label>
                 {{ form.username }}
@@ -40,6 +41,13 @@
                 {% endif %}
             </div>
 
+            {# Pole do wpisania „Nicku” – widocznej nazwy użytkownika #}
+            <div class="mb-3 w-100">
+                <label for="display_name" class="form-label">Nick (nazwa wyświetlana)</label>
+                <input type="text" name="display_name" id="display_name" class="form-control" required>
+            </div>
+
+            {# Pole do wpisania adresu e-mail #}
             <div class="mb-3 w-100">
                 <label for="email" class="form-label">E-mail</label>
                 {{ form.email }}
@@ -52,6 +60,7 @@
                 {% endif %}
             </div>
 
+            {# Pole do wpisania hasła #}
             <div class="mb-3 w-100">
                 <label for="password1" class="form-label">Hasło</label>
                 {{ form.password1 }}
@@ -64,6 +73,7 @@
                 {% endif %}
             </div>
 
+            {# Pole do potwierdzenia hasła #}
             <div class="mb-3 w-100">
                 <label for="password2" class="form-label">Potwierdź hasło</label>
                 {{ form.password2 }}
@@ -76,9 +86,11 @@
                 {% endif %}
             </div>
 
+            {# Przycisk do rejestracji użytkownika #}
             <button type="submit" class="btn btn-success w-100">Zarejestruj się</button>
         </form>
 
+        {# Link do strony logowania, jeśli użytkownik ma już konto #}
         <p class="mt-3 text-center">
             Masz już konto? <a href="{% url 'login' %}" class="btn btn-link">Zaloguj się</a>
         </p>
