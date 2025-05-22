@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="14.0">
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="14.1">
+      <change afterPath="$PROJECT_DIR$/Fleet/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fleet/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fleet/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/templates/Fleet/post_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fleet/templates/Fleet/user_posts.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,9 +72,9 @@
       <recent name="C:\Users\kinga\PycharmProjects\FleetMind\FleetMind\Fleet\templates\Fleet" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kinga\PycharmProjects\FleetMind\Fleet" />
       <recent name="C:\Users\kinga\PycharmProjects\FleetMind\Fleet\forms" />
       <recent name="C:\Users\kinga\PycharmProjects\FleetMind\Fleet\views" />
-      <recent name="C:\Users\kinga\PycharmProjects\FleetMind\Fleet" />
       <recent name="C:\Users\kinga\PycharmProjects\FleetMind\Fleet\templates\Fleet" />
       <recent name="C:\Users\kinga\PycharmProjects\FleetMind" />
     </key>
@@ -112,14 +118,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743253172273</updated>
-    </task>
-    <task id="LOCAL-00029" summary="7.1">
-      <option name="closed" value="true" />
-      <created>1747570871783</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1747570871783</updated>
     </task>
     <task id="LOCAL-00030" summary="8.0">
       <option name="closed" value="true" />
@@ -505,7 +503,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747907913484</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="14.1">
+      <option name="closed" value="true" />
+      <created>1747909221026</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1747909221026</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -520,7 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="10.10" />
     <MESSAGE value="10.11" />
     <MESSAGE value="10.12" />
     <MESSAGE value="10.13" />
@@ -545,6 +550,7 @@
     <MESSAGE value="13.2" />
     <MESSAGE value="13.3" />
     <MESSAGE value="14.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="14.0" />
+    <MESSAGE value="14.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="14.1" />
   </component>
 </project>
