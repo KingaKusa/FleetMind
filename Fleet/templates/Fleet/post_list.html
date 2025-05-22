@@ -47,4 +47,50 @@
     </tbody>
   </table>
 </div>
+
+{% include "Fleet/partials/_detail_modal.html" %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Pobieramy wszystkie przyciski Szczegóły w tabeli
+    const detailsButtons = document.querySelectorAll("button[data-id]");
+
+    detailsButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            // Pobieramy ID posta z atrybutu data-id
+            const postId = this.getAttribute("data-id");
+
+            // Wysyłamy zapytanie do widoku post_detail_json, aby pobrać szczegóły posta
+            fetch(`/posts/detail/${postId}/`)
+                .then(response => response.json()) // Odbieramy odpowiedź w formacie JSON
+                .then(data => {
+                    // Podstawowe informacje, dostępne dla wszystkich użytkowników
+                    document.querySelector("#detailModal .modal-title").innerText = data.title;
+                    document.querySelector("#detailModal #modalContent").innerText = data.content;
+                    document.querySelector("#detailModal #modalDate").innerText = data.create_at;
+                    document.querySelector("#detailModal #modalAuthor").innerText = data.author;
+
+                    // Jeśli użytkownik jest właścicielem posta, dodajemy więcej informacji
+                    if (data.edit_url) {
+                        document.querySelector("#detailModal #modalDistance").innerText = data.distance ? data.distance + " km" : "Brak danych";
+                        document.querySelector("#detailModal #modalStart").innerText = data.start_location || "Brak informacji";
+                        document.querySelector("#detailModal #modalEnd").innerText = data.end_location || "Brak informacji";
+                        document.querySelector("#detailModal #modalTime").innerText = data.travel_time || "Brak danych";
+                        document.querySelector("#detailModal #modalVehicle").innerText = data.vehicle || "Brak informacji";
+
+                        // Pokazujemy dodatkowe pola tylko dla właściciela
+                        document.querySelector("#detailModal #ownerDetails").style.display = "block";
+                    } else {
+                        // Ukrywamy dodatkowe pola dla innych użytkowników
+                        document.querySelector("#detailModal #ownerDetails").style.display = "none";
+                    }
+                })
+                .catch(error => console.error("Błąd pobierania danych:", error));
+        });
+    });
+});
+</script>
+
 {% endblock %}
+
+
