@@ -37,34 +37,28 @@ class RegisterForm(forms.ModelForm):
         model = User
         fields = ["username", "email", "password1", "password2"]
 
-    def clean_username(self):
-        """ Sprawdza, czy nazwa użytkownika już istnieje. """
-        username = self.cleaned_data.get("username")
+    def clean(self):
+        """
+        Globalna walidacja formularza:
+        - Sprawdza, czy hasła są identyczne.
+        - Sprawdza unikalność nazwy użytkownika i e-maila.
+        """
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get("password1")
+        password2 = cleaned_data.get("password2")
+
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Hasła muszą być identyczne!")
+
+        username = cleaned_data.get("username")
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError("Nazwa użytkownika już istnieje. Wybierz inną.")
-        return username
 
-    def clean_email(self):
-        """ Sprawdza, czy adres e-mail jest unikalny. """
-        email = self.cleaned_data.get("email")
+        email = cleaned_data.get("email")
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Użytkownik z tym adresem e-mail już istnieje.")
-        return email
 
-    def clean_password2(self):
-        """ Sprawdza, czy oba hasła są identyczne. """
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 != password2:
-            raise forms.ValidationError("Hasła muszą być identyczne!")
-        return password2
-
-    def clean_display_name(self):
-        """ Sprawdza, czy Nick jest unikalny. """
-        display_name = self.cleaned_data.get("display_name")
-        if display_name and Profile.objects.filter(display_name=display_name).exists():
-            raise forms.ValidationError("Ten Nick jest już zajęty. Wybierz inny.")
-        return display_name
+        return cleaned_data
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -80,18 +74,22 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ["email"]
 
-    def clean_password2(self):
-        """ Sprawdza, czy nowe hasła są identyczne, jeśli zostały podane. """
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 or password2:
+    def clean(self):
+        """
+        Globalna walidacja formularza edycji:
+        - Sprawdza, czy nowe hasła są identyczne.
+        - Sprawdza unikalność Nicku.
+        """
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get("password1")
+        password2 = cleaned_data.get("password2")
+
+        if password1 or password2:  # Jeśli jedno z pól hasła jest wypełnione
             if password1 != password2:
                 raise forms.ValidationError("Hasła muszą być identyczne!")
-        return password2
 
-    def clean_display_name(self):
-        """ Sprawdza, czy Nick jest unikalny. """
-        display_name = self.cleaned_data.get("display_name")
+        display_name = cleaned_data.get("display_name")
         if display_name and Profile.objects.filter(display_name=display_name).exists():
             raise forms.ValidationError("Ten Nick jest już zajęty. Wybierz inny.")
-        return display_name
+
+        return cleaned_data
