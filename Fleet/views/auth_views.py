@@ -9,7 +9,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from Fleet.forms import RegisterForm
-from ..models import Post  # Dwie krpki oznaczają import z katalogu wyżej (nadrzędnego)
+from ..models import Post, Profile  # Dodajemy import `Profile`, aby zapisywać Nick
+
 
 class CustomLoginView(LoginView):
     """
@@ -20,12 +21,12 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
     success_url = "/posts/"  # Przekierowanie po zalogowaniu
 
-@login_required
+
 def register(request):
     """
     Widok rejestracji użytkownika.
-    Przy GET wyświetla formularz rejestracyjny, przy POST tworzy nowe konto
-    i automatycznie loguje nowego użytkownika.
+    Przy GET wyświetla formularz rejestracyjny, przy POST tworzy konto,
+    dodaje Nick (`display_name`) i automatycznie loguje nowego użytkownika.
     """
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -33,16 +34,41 @@ def register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data["password1"])
             user.save()
+
+            # Sprawdzamy, czy użytkownik już ma profil
+            profile, created = Profile.objects.get_or_create(user=user)
+            if created:
+                profile.display_name = form.cleaned_data.get("display_name", "")
+                profile.save()
+
             login(request, user)
             return redirect("post_list")
     else:
         form = RegisterForm()
+
     return render(request, "Fleet/Auth/register.html", {"form": form})
 
 @login_required
 def user_panel(request):
     """
     Panel użytkownika – wyświetla aktualnego użytkownika oraz jego posty.
+    Pozwala użytkownikowi zmieniać swój Nick (`display_name`).
     """
+
+    # Pobieramy lub tworzymy profil użytkownika
+    profile, created = Profile.objects.get_or_create(user=request.user)
+
+    # Obsługa formularza zmiany Nicku
+    if request.method == "POST":
+        new_display_name = request.POST.get("display_name", "").strip()  # Pobieramy nową wartość Nicku z formularza
+
+        if new_display_name:  # Sprawdzamy, czy użytkownik wpisał nową nazwę
+            profile.display_name = new_display_name  # Aktualizujemy Nick w obiekcie Profile
+            profile.save()  # Zapisujemy zmiany w bazie danych
+
+    # Pobieramy wszystkie posty dodane przez aktualnie zalogowanego użytkownika
     user_posts = Post.objects.filter(author=request.user)
-    return render(request, "Fleet/Auth/user_panel.html", {"user": request.user, "posts": user_posts})
+
+    # Przekazujemy dane do szablonu HTML `user_panel.html`
+    return render(request, "Fleet/Auth/user_panel.html", {"user": request.user, "profile": profile, "posts": user_posts})
+

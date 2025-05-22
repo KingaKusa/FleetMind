@@ -3,19 +3,26 @@
 
 {% block title %}Witamy w FleetMind!{% endblock %}
 
-<!--Nadpisujemy blok sidebar, ustalając go jako pusty, aby nie wyświetlał się panel użytkownika-->
+<!-- Nadpisujemy blok sidebar, aby nie wyświetlał się boczny panel użytkownika -->
 {% block sidebar %}{% endblock %}
 
 {% block content %}
 <div class="text-center mt-5">
     <h1>Witamy w FleetMind!</h1>
     <p>Zapraszamy do korzystania z naszej aplikacji do zarządzania przejazdami.</p>
+
     {% if user.is_authenticated %}
+        {# Sprawdzamy, czy użytkownik jest zalogowany #}
         <p>Jesteś zalogowany jako <strong>{{ user.username }}</strong>.</p>
+
+        {# Jeśli użytkownik jest zalogowany, wyświetlamy przycisk do przejazdów #}
         <a class="btn btn-primary" href="{% url 'post_list' %}">Przejdź do przejazdów</a>
+
     {% else %}
+        {# Jeśli użytkownik NIE JEST zalogowany, wyświetlamy opcje logowania i rejestracji #}
         <p>Jeśli już posiadasz konto, zaloguj się:</p>
         <a class="btn btn-success" href="{% url 'login' %}">Zaloguj się</a>
+
         <p class="mt-3">Nie masz konta? Załóż je teraz:</p>
         <a class="btn btn-info" href="{% url 'register' %}">Załóż konto</a>
     {% endif %}

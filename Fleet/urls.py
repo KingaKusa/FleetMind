@@ -8,6 +8,7 @@ co ułatwia zarządzanie kodem.
 from django.urls import path
 # Importujemy widoki z `views/__init__.py`, co upraszcza importy
 from .views import *
+from Fleet import views
 
 from django.contrib.auth.views import LogoutView
 
@@ -18,7 +19,7 @@ urlpatterns = [
     path('home/', home, name='home'),
 
     # Rejestracja nowych użytkowników
-    path('register/', register, name='register'),
+    path('register/', views.register, name='register'),
 
     # Logowanie – używamy `CustomLoginView`, które korzysta z własnego szablonu logowania
     path('login/', CustomLoginView.as_view(), name='login'),
