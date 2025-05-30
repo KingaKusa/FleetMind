@@ -64,3 +64,33 @@ table th a:hover {
     color: #007bff;          /* Delikatny niebieski na hover */
     text-decoration: underline;
 }
+
+.table-container {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    min-width: 600px;
+}
+
+.modal-dialog {
+    max-width: 95%;
+}
+
+@media (max-width: 768px) {
+    .user-panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .main-content {
+        margin-top: 80px;
+    }
+}

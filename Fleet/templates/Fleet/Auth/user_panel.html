@@ -5,7 +5,7 @@
 {# W tym szablonie nie nadpisujemy bloku sidebar, dlatego domyślnie wyświetli się panel boczny zdefiniowany w base.html #}
 
 {% block content %}
-<div class="user-info p-3 bg-light border rounded">
+<div class="container-fluid">
     <h3>Twój profil</h3>
     <p><strong>Nick:</strong> {{ profile.display_name }}</p>
     <p><strong>Email:</strong> {{ user.email }}</p>

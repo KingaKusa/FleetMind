@@ -38,9 +38,10 @@ def register(request):
             # Sprawdzamy, czy użytkownik już ma profil
             profile, created = Profile.objects.get_or_create(user=user)
 
-            # Zapewniamy, że `display_name` zostanie zapisany, ale nie nadpisze istniejących profili
-            if created or not profile.display_name:
-                profile.display_name = form.cleaned_data.get("display_name", "")
+            # ✅ Zawsze przypisujemy `display_name`, jeśli jest podany
+            display_name = form.cleaned_data.get("display_name", "")
+            if display_name:  # Sprawdzamy, czy użytkownik rzeczywiście podał nick
+                profile.display_name = display_name
                 profile.save()
 
             login(request, user)
