@@ -37,7 +37,9 @@ def register(request):
 
             # Sprawdzamy, czy użytkownik już ma profil
             profile, created = Profile.objects.get_or_create(user=user)
-            if created:
+
+            # Zapewniamy, że `display_name` zostanie zapisany, ale nie nadpisze istniejących profili
+            if created or not profile.display_name:
                 profile.display_name = form.cleaned_data.get("display_name", "")
                 profile.save()
 
@@ -72,6 +74,10 @@ def user_panel(request):
                 request.user.set_password(new_password)
 
             request.user.save()
+
+            # Automatyczne ponowne zalogowanie po zmianie danych użytkownika
+            login(request, request.user)
+
             success_message = "Dane zostały pomyślnie zmienione!"  # Komunikat o powodzeniu zmian
 
         # Jeśli są błędy, modal pozostanie otwarty, a użytkownik zobaczy komunikaty

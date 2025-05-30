@@ -34,6 +34,38 @@
         {% block content %}
         {% include "Fleet/post_list.html" %}
         {% include "Fleet/post_detail.html" %}
+
+            <!-- TEST: Dodanie `editModal` do `base.html` -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edytuj post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form method="POST">
+                      {% csrf_token %}
+                      <div class="mb-3">
+                        <label for="edit-title" class="form-label">Tytuł posta:</label>
+                        <input type="text" name="title" id="edit-title" class="form-control">
+                      </div>
+                      <div class="mb-3">
+                        <label for="edit-content" class="form-label">Treść posta:</label>
+                        <textarea name="content" id="edit-content" rows="5" class="form-control"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+        {% include "Fleet/post_list.html" %}
+        {% include "Fleet/post_detail.html" %}
+        {% include "Fleet/partials/_edit_modal.html" %}
+
         {% endblock %}
       </div>
       {% block sidebar %}
