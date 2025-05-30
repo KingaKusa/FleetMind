@@ -51,6 +51,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# SECURITY SETTINGS: konfiguracja pozwająca Django poprawnie autoryzować żądania z mojej domeny na AWS
+CSRF_TRUSTED_ORIGINS = ['https://fleetmind-env.eba-bxnzixvu.eu-central-1.elasticbeanstalk.com']
+
 # Główna konfiguracja URL – wskazuje na plik urls.py projektu
 ROOT_URLCONF = 'FleetMind.urls'
 
