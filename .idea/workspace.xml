@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="19.0">
-      <change beforePath="$PROJECT_DIR$/Fleet/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Fleet/static/css/style.css" afterDir="false" />
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="19.1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,14 +112,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743253172273</updated>
-    </task>
-    <task id="LOCAL-00045" summary="10.2">
-      <option name="closed" value="true" />
-      <created>1747763164945</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1747763164945</updated>
     </task>
     <task id="LOCAL-00046" summary="10.3">
       <option name="closed" value="true" />
@@ -505,7 +497,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748636264205</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="19.1">
+      <option name="closed" value="true" />
+      <created>1748636580716</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1748636580716</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -520,7 +520,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="12.2" />
     <MESSAGE value="12.3" />
     <MESSAGE value="12.4" />
     <MESSAGE value="12.5" />
@@ -545,6 +544,7 @@
     <MESSAGE value="18.0" />
     <MESSAGE value="18.1" />
     <MESSAGE value="19.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="19.0" />
+    <MESSAGE value="19.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="19.1" />
   </component>
 </project>
