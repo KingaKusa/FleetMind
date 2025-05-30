@@ -16,12 +16,16 @@ def post_list(request):
     """
     Widok listy przejazdów.
     Pobiera wszystkie posty z bazy danych, obsługuje sortowanie.
+    Dodany filtr sprawdzający czy post należy do zalogowanego użytkownika- by móc wejść w szczegóły posta
     """
     sort_field = request.GET.get('sort', 'title')
     direction = request.GET.get('direction', 'asc')
 
     order_prefix = '' if direction == 'asc' else '-'
     posts = Post.objects.all().order_by(order_prefix + sort_field)
+
+    for post in posts:
+        post.show_details = post.author == request.user
 
     return render(request, 'Fleet/post_list.html', {
         'posts': posts,
@@ -56,7 +60,7 @@ def update_post(request, post_id):
         form.save()
         return redirect("post_list")
 
-    return render(request, "Fleet/post_form.html", {"form": form, "title": "Edytuj post"})
+    return render(request, "Fleet/post_detail.html", {"post": post, "form": form})
 
 @login_required
 def delete_post(request, post_id):
@@ -69,6 +73,17 @@ def delete_post(request, post_id):
         post.delete()
         return JsonResponse({"message": "Post usunięty"}, status=204)
     return JsonResponse({"error": "Metoda niedozwolona"}, status=405)
+
+
+@login_required
+def post_detail_view(request, post_id):
+    """
+    Widok renderujący `post_detail.html`, aby poprawnie wyświetlić szczegóły posta.
+    """
+    post = get_object_or_404(Post, id=post_id)
+
+    return render(request, "Fleet/post_detail.html", {"post": post})
+
 
 @login_required
 def post_detail_json(request, post_id):

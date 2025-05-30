@@ -44,5 +44,8 @@ urlpatterns = [
 
     # Szczegóły posta – zwraca dane w formacie JSON (np. dla dynamicznych operacji w frontendzie)
     path('posts/detail/<int:post_id>/', post_detail_json, name='post_detail_json'),
+
+    path('posts/detail-page/<int:post_id>/', post_detail_view, name='post_detail_view'),
+
 ]
 

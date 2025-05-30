@@ -38,17 +38,21 @@
         <td>{{ post.create_at|date:"d.m.Y H:i" }}</td>
         <td>{{ post.author.profile.display_name }}</td>
         <td>
-          <!-- Pojedynczy przycisk „Szczegóły” -->
-          <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailModal"
-                  data-id="{{ post.id }}">
-            Szczegóły
-          </button>
-
+          <!-- Pojedynczy przycisk „Szczegóły, Opcje dostępne tylko dla właściciela posta” -->
           {% if post.author == request.user %}
-            <!-- Opcje dostępne tylko dla właściciela posta -->
-            <a class="btn btn-sm btn-warning" href="{% url 'update_post' post.id %}">Edytuj</a>
-            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                    data-id="{{ post.id }}" data-title="{{ post.title }}">Usuń</button>
+              <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailModal"
+                      data-id="{{ post.id }}"
+                      data-title="{{ post.title }}"
+                      data-content="{{ post.content }}"
+                      data-create_at="{{ post.create_at|date:'d.m.Y H:i' }}"
+                      data-author="{{ post.author.profile.display_name }}"
+                      data-distance="{{ post.distance }}"
+                      data-start_location="{{ post.start_location }}"
+                      data-end_location="{{ post.end_location }}"
+                      data-travel_time="{{ post.travel_time }}"
+                      data-vehicle="{{ post.vehicle }}">
+                  Szczegóły
+              </button>
           {% endif %}
         </td>
       </tr>

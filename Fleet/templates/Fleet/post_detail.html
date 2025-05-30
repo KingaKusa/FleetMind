@@ -1,26 +1,18 @@
-<!--
-  post_detail.html – Szablon wyświetlający szczegóły przejazdu w modalach.
-  Zawiera dwa modale:
-  1. "detailModal" – pokazujący szczegółowe informacje o przejeździe.
-  2. "deleteModal" – modal potwierdzenia usunięcia przejazdu.
+{% extends "Fleet/base.html" %}
+{% load static %}
+{% block title %}Szczegóły przejazdu{% endblock %}
 
-  Dane szczegółowe (np. tytuł, treść, data utworzenia, autor itd.)
-  zostaną wypełnione dynamicznie przez skrypt JavaScript, który pobiera dane z API.
--->
+{% block content %}
+<h2 class="mt-4">Szczegóły przejazdu</h2>
 
 <!-- MODAL SZCZEGÓŁÓW PRZEJAZDU -->
-<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-
-      <!-- Nagłówek modala -->
       <div class="modal-header">
         <h5 class="modal-title" id="detailModalLabel">Szczegóły przejazdu</h5>
-        <!-- Przycisk zamykający modal -->
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
       </div>
-
-      <!-- Treść modala – miejsca na dane, które zostaną uzupełnione przez JavaScript -->
       <div class="modal-body">
         <p><strong>Tytuł:</strong> <span id="detail-title"></span></p>
         <p><strong>Treść:</strong> <span id="detail-content"></span></p>
@@ -32,43 +24,62 @@
         <p><strong>Travel time:</strong> <span id="detail-travel_time"></span></p>
         <p><strong>Vehicle:</strong> <span id="detail-vehicle"></span></p>
       </div>
-
-      <!-- Stopka modala – przyciski akcji (edytuj, usuń, zamknij) -->
       <div class="modal-footer">
-        <!-- Link do edycji – adres URL zostanie nadany dynamicznie w JavaScript -->
-        <a href="#" id="editLink" class="btn btn-warning">Edytuj</a>
-        <!-- Przycisk usuwania, który otwiera modal potwierdzenia -->
-        <button id="deleteBtn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Usuń</button>
-        <!-- Przycisk zamknięcia modala szczegółów -->
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+          {% if post.author == request.user %}
+            <a href="#" id="editLink" class="btn btn-warning" data-id="{{ post.id }}" data-bs-toggle="modal" data-bs-target="#editModal">Edytuj</a>
+            <button id="deleteBtn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ post.id }}">Usuń</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+          {% endif %}
       </div>
-
     </div>
   </div>
 </div>
 
 <!-- MODAL POTWIERDZENIA USUNIĘCIA -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel">
   <div class="modal-dialog">
     <div class="modal-content">
-
-      <!-- Nagłówek modala potwierdzenia -->
       <div class="modal-header">
         <h5 class="modal-title" id="deleteModalLabel">Potwierdzenie usunięcia</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-
-      <!-- Treść modala: pytanie o potwierdzenie usunięcia -->
       <div class="modal-body">
         Czy na pewno chcesz usunąć ten przejazd?
       </div>
-
-      <!-- Stopka modala potwierdzenia: przyciski anulujące lub potwierdzające usunięcie -->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
         <button id="confirmDeleteBtn" type="button" class="btn btn-danger">Usuń</button>
       </div>
-
     </div>
   </div>
 </div>
+
+<!-- MODAL EDYCJI POSTA -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edytuj post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="edit-title" class="form-label">Tytuł posta:</label>
+            <input type="text" name="title" id="edit-title" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="edit-content" class="form-label">Treść posta:</label>
+            <textarea name="content" id="edit-content" rows="5" class="form-control"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="color: red; font-weight: bold;">TEST: editModal powinien być tutaj!</p>
+
+{% endblock %}

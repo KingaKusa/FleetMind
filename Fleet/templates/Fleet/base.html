@@ -32,7 +32,8 @@
     <div class="container d-flex mt-4">
       <div class="main-content flex-grow-1">
         {% block content %}
-        {% include "Fleet/post_list.html" %}  <!-- Poprawione wywołanie -->
+        {% include "Fleet/post_list.html" %}
+        {% include "Fleet/post_detail.html" %}
         {% endblock %}
       </div>
       {% block sidebar %}
