@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="20.0 Zmiana klucza AWS">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy-to-aws.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy-to-aws.yml" afterDir="false" />
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="20.0">
+      <change beforePath="$PROJECT_DIR$/.idea/FleetMind.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FleetMind.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FleetMind/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +62,7 @@
     "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/kinga/PycharmProjects/FleetMind",
     "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -115,14 +117,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743253172273</updated>
-    </task>
-    <task id="LOCAL-00048" summary="10.5">
-      <option name="closed" value="true" />
-      <created>1747768956809</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1747768956809</updated>
     </task>
     <task id="LOCAL-00049" summary="10.6">
       <option name="closed" value="true" />
@@ -508,7 +502,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748963739343</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="20.0">
+      <option name="closed" value="true" />
+      <created>1748964877844</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1748964877844</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -546,8 +548,8 @@
     <MESSAGE value="18.1" />
     <MESSAGE value="19.0" />
     <MESSAGE value="19.1" />
-    <MESSAGE value="20.0" />
     <MESSAGE value="20.0 Zmiana klucza AWS" />
-    <option name="LAST_COMMIT_MESSAGE" value="20.0 Zmiana klucza AWS" />
+    <MESSAGE value="20.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20.0" />
   </component>
 </project>
