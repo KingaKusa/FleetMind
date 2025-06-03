@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 
 # Pobieramy zmienną środowiskową, by rozróżnić środowisko (domyślnie 'dev')
 ENV = os.environ.get('ENV', 'dev')
@@ -22,11 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # W środowisku produkcyjnym warto przekazywać tę wartość za pomocą zmiennych środowiskowych
-load_dotenv()
 aws_key = os.getenv("AWS_ACCESS_KEY_ID")
 aws_secret = os.getenv("AWS_SECRET_ACCESS_KEY")
 aws_region = os.getenv("AWS_DEFAULT_REGION")
-print(f"Klucz: {aws_key}, Region: {aws_region}")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
