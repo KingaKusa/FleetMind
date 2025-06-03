@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Pobieramy zmienną środowiskową, by rozróżnić środowisko (domyślnie 'dev')
 ENV = os.environ.get('ENV', 'dev')
@@ -21,7 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # W środowisku produkcyjnym warto przekazywać tę wartość za pomocą zmiennych środowiskowych
-SECRET_KEY = 'django-insecure-@##67hctnu850%4canbi_nwv^wjg(x4pvil40i(=xwg0lmpp)4'
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
