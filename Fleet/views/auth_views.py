@@ -43,6 +43,7 @@ def register(request):
             if display_name:  # Sprawdzamy, czy użytkownik rzeczywiście podał nick
                 profile.display_name = display_name
                 profile.save()
+                user.profile = profile
 
             login(request, user)
             return redirect("post_list")
