@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="poprawa SECRET_KEY w settings.py">
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="dodanie zakresu do .gitignore">
       <change beforePath="$PROJECT_DIR$/.github/workflows/deploy-to-aws.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy-to-aws.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FleetMind/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,30 +114,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743253172273</updated>
-    </task>
-    <task id="LOCAL-00055" summary="10.12">
-      <option name="closed" value="true" />
-      <created>1747770500767</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1747770500767</updated>
-    </task>
-    <task id="LOCAL-00056" summary="10.13">
-      <option name="closed" value="true" />
-      <created>1747770574313</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1747770574313</updated>
-    </task>
-    <task id="LOCAL-00057" summary="10.14">
-      <option name="closed" value="true" />
-      <created>1747770816616</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1747770816616</updated>
     </task>
     <task id="LOCAL-00058" summary="10.15">
       <option name="closed" value="true" />
@@ -508,7 +483,31 @@
       <option name="project" value="LOCAL" />
       <updated>1749401263980</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="poprawa SECRET_KEY">
+      <option name="closed" value="true" />
+      <created>1749402083763</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1749402083763</updated>
+    </task>
+    <task id="LOCAL-00105" summary="poprawa SECRET_KEY">
+      <option name="closed" value="true" />
+      <created>1749402375414</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1749402375414</updated>
+    </task>
+    <task id="LOCAL-00106" summary="dodanie zakresu do .gitignore">
+      <option name="closed" value="true" />
+      <created>1749402727896</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1749402727896</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,8 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="13.0" />
-    <MESSAGE value="13.1" />
     <MESSAGE value="13.2" />
     <MESSAGE value="13.3" />
     <MESSAGE value="14.0" />
@@ -548,6 +545,8 @@
     <MESSAGE value="20.0" />
     <MESSAGE value="aktualizacja regionu i klucza dostępu AWS" />
     <MESSAGE value="poprawa SECRET_KEY w settings.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="poprawa SECRET_KEY w settings.py" />
+    <MESSAGE value="poprawa SECRET_KEY" />
+    <MESSAGE value="dodanie zakresu do .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodanie zakresu do .gitignore" />
   </component>
 </project>
