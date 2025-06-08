@@ -26,7 +26,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: "eu-central-1"
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Deploy to Elastic Beanstalk
 #        if: success()
         run: |

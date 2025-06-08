@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="20.0">
+    <list default="true" id="bbc66e35-5b63-4da9-9e05-dc2cf8007675" name="Changes" comment="poprawa SECRET_KEY w settings.py">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy-to-aws.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy-to-aws.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FleetMind/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FleetMind/settings.py" afterDir="false" />
     </list>
@@ -114,22 +115,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743253172273</updated>
-    </task>
-    <task id="LOCAL-00053" summary="10.10">
-      <option name="closed" value="true" />
-      <created>1747769797489</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1747769797489</updated>
-    </task>
-    <task id="LOCAL-00054" summary="10.11">
-      <option name="closed" value="true" />
-      <created>1747769945890</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1747769945890</updated>
     </task>
     <task id="LOCAL-00055" summary="10.12">
       <option name="closed" value="true" />
@@ -507,7 +492,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748969845723</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="aktualizacja regionu i klucza dostępu AWS">
+      <option name="closed" value="true" />
+      <created>1749127454458</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1749127454458</updated>
+    </task>
+    <task id="LOCAL-00103" summary="poprawa SECRET_KEY w settings.py">
+      <option name="closed" value="true" />
+      <created>1749401263980</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1749401263980</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,8 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="12.5" />
-    <MESSAGE value="12.6" />
     <MESSAGE value="13.0" />
     <MESSAGE value="13.1" />
     <MESSAGE value="13.2" />
@@ -547,6 +546,8 @@
     <MESSAGE value="19.1" />
     <MESSAGE value="20.0 Zmiana klucza AWS" />
     <MESSAGE value="20.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20.0" />
+    <MESSAGE value="aktualizacja regionu i klucza dostępu AWS" />
+    <MESSAGE value="poprawa SECRET_KEY w settings.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="poprawa SECRET_KEY w settings.py" />
   </component>
 </project>

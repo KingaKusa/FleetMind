@@ -24,9 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # W środowisku produkcyjnym warto przekazywać tę wartość za pomocą zmiennych środowiskowych
-aws_key = os.getenv("AWS_ACCESS_KEY_ID")
-aws_secret = os.getenv("AWS_SECRET_ACCESS_KEY") # <-- klucz AWS
-aws_region = os.getenv("AWS_DEFAULT_REGION")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+AWS_DEFAULT_REGION = os.getenv("AWS_DEFAULT_REGION")
+
+# Debugowanie - sprawdzenie wartości
+print(f"🔍 Debug → AWS Key: {AWS_ACCESS_KEY_ID}")
+print(f"🔍 Debug → AWS Secret Key: {AWS_SECRET_KEY}")
+print(f"🔍 Debug → AWS Region: {AWS_DEFAULT_REGION}")
 
 # Wczytanie pliku .env z określonej ścieżki
 dotenv_path = "C:/Users/kinga/PycharmProjects/FleetMind/.env"
