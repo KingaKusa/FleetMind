@@ -10,14 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-import os
 from pathlib import Path
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
 # Pobieramy zmienną środowiskową, by rozróżnić środowisko (domyślnie 'dev')
-ENV = os.environ.get('ENV', 'dev')
+env = os.environ.get('env', 'dev')
 
 # BASE_DIR ułatwia budowanie ścieżek względem katalogu głównego projektu
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +28,18 @@ aws_key = os.getenv("AWS_ACCESS_KEY_ID")
 aws_secret = os.getenv("AWS_SECRET_ACCESS_KEY") # <-- klucz AWS
 aws_region = os.getenv("AWS_DEFAULT_REGION")
 
+# Wczytanie pliku .env z określonej ścieżki
+dotenv_path = "C:/Users/kinga/PycharmProjects/FleetMind/.env"
+load_dotenv(dotenv_path=dotenv_path)  # Wczytaj zmienne
+# Pobranie wartości `SECRET_KEY`
 SECRET_KEY = os.getenv("SECRET_KEY")  # <-- klucz do Django
+
+# Debugowanie - sprawdzenie wartości
+if SECRET_KEY is None:
+    raise ValueError("🚨 ERROR: SECRET_KEY nie został poprawnie wczytany!")
+
+# Debugowanie - sprawdzenie wartości
+print(f"🔍 Debug → SECRET_KEY: {SECRET_KEY}")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,7 +98,7 @@ WSGI_APPLICATION = 'FleetMind.wsgi.application'
 
 # Konfiguracja baz danych:
 # Jeśli środowisko to "prod", używamy PostgreSQL, w przeciwnym wypadku SQLite.
-if ENV == 'prod':
+if env == 'prod':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
